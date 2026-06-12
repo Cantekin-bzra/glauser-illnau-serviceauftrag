@@ -1,0 +1,137 @@
+
+<div id="erd" style="padding: 8px 0;"></div>
+<style>
+#erd svg { max-width: 100%; }
+</style>
+<script type="module">
+import mermaid from 'https://esm.sh/mermaid@11/dist/mermaid.esm.min.mjs';
+const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+await document.fonts.ready;
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  fontFamily: '"Anthropic Sans", sans-serif',
+  themeVariables: {
+    darkMode: dark,
+    fontSize: '13px',
+    fontFamily: '"Anthropic Sans", sans-serif',
+    lineColor: dark ? '#9c9a92' : '#73726c',
+    textColor: dark ? '#c2c0b6' : '#3d3d3a',
+    primaryColor: dark ? '#1e3a5f' : '#dbeafe',
+    primaryBorderColor: dark ? '#3b5f8a' : '#93c5fd',
+    primaryTextColor: dark ? '#c2c0b6' : '#1e3a5f',
+  },
+});
+
+const diagram = `erDiagram
+  AUFTRAG {
+    int         auftrag_id              PK
+    int         kunden_id               FK
+    varchar     bereichsleiter_id       FK
+    varchar     mitarbeiter_id          FK
+    varchar     titel
+    text        beschreibung
+    varchar     status
+    date        erfassungsdatum
+    time        erfassungszeit
+    varchar     terminwunsch
+    date        termin_geplant
+    date        ausfuehrungsdatum
+    date        freigabe_datum
+    date        verrechnet_am
+    varchar     objekt_strasse
+    varchar     objekt_plz
+    varchar     objekt_ort
+    boolean     verrechnung_abweichend
+    varchar     verrechnung_vorname
+    varchar     verrechnung_nachname
+    varchar     verrechnung_strasse
+    varchar     verrechnung_plz
+    varchar     verrechnung_ort
+  }
+  KUNDE {
+    int         kunden_id               PK
+    varchar     vorname
+    varchar     nachname
+    varchar     firma
+    varchar     telefon
+    varchar     natel
+    varchar     email
+    varchar     strasse
+    varchar     plz
+    varchar     ort
+  }
+  BENUTZER {
+    varchar     benutzer_id             PK
+    varchar     benutzername
+    varchar     vorname
+    varchar     nachname
+    varchar     email
+    varchar     passwort_hash
+    varchar     rolle
+  }
+  ARBEITSTYP {
+    int         arbeitstyp_id           PK
+    varchar     bezeichnung
+  }
+  AUFTRAG_ARBEITSTYP {
+    int         auftrag_id              FK
+    int         arbeitstyp_id           FK
+  }
+  RAPPORT {
+    int         rapport_id              PK
+    int         auftrag_id              FK
+    varchar     mitarbeiter_id          FK
+    varchar     freigegeben_von         FK
+    date        datum
+    decimal     stunden
+    text        arbeitsbeschreibung
+    text        material
+    date        freigabe_datum
+  }
+  RECHNUNG {
+    int         rechnung_id             PK
+    int         auftrag_id              FK
+    varchar     erstellt_von            FK
+    date        rechnungsdatum
+    decimal     betrag
+    text        positionen
+  }
+  KUNDE              ||--o{ AUFTRAG            : "erteilt"
+  BENUTZER           ||--o{ AUFTRAG            : "disponiert (BL)"
+  BENUTZER           ||--o{ AUFTRAG            : "fuehrt aus (MA)"
+  AUFTRAG            ||--o{ RAPPORT            : "hat"
+  AUFTRAG            ||--o| RECHNUNG           : "erzeugt"
+  AUFTRAG            ||--o{ AUFTRAG_ARBEITSTYP : "hat"
+  ARBEITSTYP         ||--o{ AUFTRAG_ARBEITSTYP : "gehoert zu"
+  BENUTZER           ||--o{ RAPPORT            : "erstellt"
+  BENUTZER           ||--o{ RAPPORT            : "gibt frei"
+  BENUTZER           ||--o{ RECHNUNG           : "erstellt"
+`;
+
+const { svg } = await mermaid.render('erd-svg', diagram);
+document.getElementById('erd').innerHTML = svg;
+
+document.querySelectorAll('#erd svg.erDiagram .node').forEach(node => {
+  const firstPath = node.querySelector('path[d]');
+  if (!firstPath) return;
+  const d = firstPath.getAttribute('d');
+  const nums = d.match(/-?[\d.]+/g)?.map(Number);
+  if (!nums || nums.length < 8) return;
+  const xs = [nums[0], nums[2], nums[4], nums[6]];
+  const ys = [nums[1], nums[3], nums[5], nums[7]];
+  const x = Math.min(...xs), y = Math.min(...ys);
+  const w = Math.max(...xs) - x, h = Math.max(...ys) - y;
+  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.setAttribute('x', x); rect.setAttribute('y', y);
+  rect.setAttribute('width', w); rect.setAttribute('height', h);
+  rect.setAttribute('rx', '8');
+  for (const a of ['fill', 'stroke', 'stroke-width', 'class', 'style']) {
+    if (firstPath.hasAttribute(a)) rect.setAttribute(a, firstPath.getAttribute(a));
+  }
+  firstPath.replaceWith(rect);
+});
+document.querySelectorAll('#erd svg.erDiagram .row-rect-odd path, #erd svg.erDiagram .row-rect-even path').forEach(p => {
+  p.setAttribute('stroke', 'none');
+});
+</script>
