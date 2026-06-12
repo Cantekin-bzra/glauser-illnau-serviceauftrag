@@ -1,0 +1,54 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/25.0.2 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="25.0.2">
+  <diagram id="Gs1-mCcW4P5j42BrkWDy" name="Seite-1">
+    <mxGraphModel dx="1100" dy="788" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="" style="ellipse;aspect=fixed;fillColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="555" y="60" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="ERFASST" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;arcSize=50;" parent="1" vertex="1">
+          <mxGeometry x="470" y="140" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="DISPONIERT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;arcSize=50;" parent="1" vertex="1">
+          <mxGeometry x="470" y="270" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="AUSGEFÜHRT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;arcSize=50;" parent="1" vertex="1">
+          <mxGeometry x="470" y="400" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="FREIGEGEBEN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;arcSize=50;" parent="1" vertex="1">
+          <mxGeometry x="470" y="530" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="VERRECHNET" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;arcSize=50;" parent="1" vertex="1">
+          <mxGeometry x="470" y="660" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="" style="ellipse;aspect=fixed;fillColor=#000000;strokeColor=#000000;double=1;" parent="1" vertex="1">
+          <mxGeometry x="555" y="775" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="20" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="2" target="3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4wrrQPE0aEK--sQMtn_t-30" value="Auftrag annehmen" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="20">
+          <mxGeometry x="-0.1333" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="21" value="Mitarbeiter zuweisen" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=12;fontStyle=2;" parent="1" source="3" target="4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="22" value="Arbeit abgeschlossen" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=12;fontStyle=2;" parent="1" source="4" target="5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="23" value="Rapport geprüft" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=12;fontStyle=2;" parent="1" source="5" target="6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="24" value="Rechnung erstellt" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=12;fontStyle=2;" parent="1" source="6" target="7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="25" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;" parent="1" source="7" target="8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,101 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/25.0.2 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="25.0.2">
+  <diagram id="PHQSTgWb4LOVulJUsUp8" name="Seite-1">
+    <mxGraphModel dx="1571" dy="1126" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="10" value="Auftrag annehmen" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="380" y="110" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="Auftragsdokument generieren" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="370" y="200" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="Auftrag verrechnen" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="380" y="290" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="Auftrag disponieren" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="380" y="390" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="Ausführung überwachen" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="375" y="480" width="210" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="15" value="Rapport prüfen &amp; freigeben" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="365" y="570" width="230" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="16" value="Auftrag ausführen" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d6b656;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="385" y="660" width="190" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="17" value="Auftrag rapportieren" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d6b656;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="380" y="750" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="30" style="edgeStyle=none;html=1;" parent="1" target="10" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="130" y="237.66666666666674" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31" style="edgeStyle=none;html=1;" parent="1" source="BgQio54Tdte2_rXACm5g-37" target="11" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="130" y="243.66666666666674" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32" style="edgeStyle=none;html=1;" parent="1" target="12" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="130" y="249.66666666666674" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="33" style="edgeStyle=none;html=1;" parent="1" target="13" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="125" y="508.42105263157896" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="34" style="edgeStyle=none;html=1;" parent="1" target="14" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="125" y="514.3421052631579" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="35" style="edgeStyle=none;html=1;" parent="1" source="BgQio54Tdte2_rXACm5g-41" target="15" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="125" y="520.2631578947369" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="36" style="edgeStyle=none;html=1;" parent="1" target="16" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="900" y="713.314606741573" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="37" style="edgeStyle=none;html=1;" parent="1" target="17" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="900" y="718.370786516854" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BgQio54Tdte2_rXACm5g-38" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" target="BgQio54Tdte2_rXACm5g-37">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="130" y="243.66666666666674" as="sourcePoint" />
+            <mxPoint x="373" y="231" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BgQio54Tdte2_rXACm5g-37" value="GL/Admin" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="110" y="210" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BgQio54Tdte2_rXACm5g-42" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" target="BgQio54Tdte2_rXACm5g-41">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="125" y="520.2631578947369" as="sourcePoint" />
+            <mxPoint x="397" y="578" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BgQio54Tdte2_rXACm5g-41" value="Bereichsleiter" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="480" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BgQio54Tdte2_rXACm5g-44" value="Mitarbeiter" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="900" y="680" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BgQio54Tdte2_rXACm5g-45" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="150" y="100" width="700" height="700" as="geometry" />
+        </mxCell>
+        <mxCell id="BgQio54Tdte2_rXACm5g-46" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Serviceauftrag-System&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="395" y="65" width="220" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
