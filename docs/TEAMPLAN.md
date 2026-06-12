@@ -51,10 +51,9 @@
 **Lieferobjekt:** `docs/erd/erd.png` + `docs/erd/erm-attribute.md`
 
 ### Schritt 8 – Klassendiagramm (fakultativ)
-**Zuständig:** Samuel  
-**Branch:** `feature/frontend`  
+**Zuständig:** Gruppe  
 **Ziel:** UML-Klassendiagramm der wichtigsten Java-Klassen (Entities, Services, Controller) mit Attributen, Methoden und Beziehungen.  
-**Lieferobjekt:** `docs/uml/klassendiagramm.png`
+**Lieferobjekt:** `docs/uml/klassendiagramm.html`
 
 ### Schritt 9 – Architekturentscheid
 **Zuständig:** Kenan  
@@ -211,6 +210,7 @@ Phase 0 (Alle)
 |---|---|---|
 | Kenan | 9, 15, 16, 17, 18, 19, 21a | 7 |
 | Sami | 7, 12, 13, 14, 21b | 5 |
-| Samuel | 5, 6, 8, 10, 11, 20 | 6 |
+| Samuel | 5, 6, 10, 11, 20 | 5 |
+| Gruppe | 8 | 1 |
 
 *Phase 0 (Schritte 1–4) wurde gemeinsam erledigt.*

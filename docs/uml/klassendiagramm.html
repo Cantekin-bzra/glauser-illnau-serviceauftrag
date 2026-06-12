@@ -1,0 +1,205 @@
+
+<div id="diagram" style="padding: 8px 0;"></div>
+<style>
+#diagram svg { max-width: 100%; }
+</style>
+<script type="module">
+import mermaid from 'https://esm.sh/mermaid@11/dist/mermaid.esm.min.mjs';
+const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+await document.fonts.ready;
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  fontFamily: '"Anthropic Sans", sans-serif',
+  themeVariables: {
+    darkMode: dark,
+    fontSize: '13px',
+    fontFamily: '"Anthropic Sans", sans-serif',
+    lineColor: dark ? '#9c9a92' : '#73726c',
+    textColor: dark ? '#c2c0b6' : '#3d3d3a',
+    primaryColor: dark ? '#1e3a5f' : '#dbeafe',
+    primaryBorderColor: dark ? '#3b5f8a' : '#93c5fd',
+    primaryTextColor: dark ? '#c2c0b6' : '#1e3a5f',
+  },
+});
+
+const diagram = `classDiagram
+
+  %% ── Enums ──────────────────────────────────────────
+  class AuftragStatus {
+    <<enumeration>>
+    ERFASST
+    DISPONIERT
+    AUSGEFUEHRT
+    FREIGEGEBEN
+    VERRECHNET
+  }
+
+  class Rolle {
+    <<enumeration>>
+    ADMIN
+    BEREICHSLEITER
+    MITARBEITER
+  }
+
+  %% ── Entities ────────────────────────────────────────
+  class Auftrag {
+    -int auftragId
+    -String titel
+    -String beschreibung
+    -AuftragStatus status
+    -LocalDate erfassungsdatum
+    -LocalTime erfassungszeit
+    -String terminwunsch
+    -LocalDate terminGeplant
+    -LocalDate ausfuehrungsdatum
+    -LocalDate freigabeDatum
+    -LocalDate verrrechnetAm
+    -String objektStrasse
+    -String objektPlz
+    -String objektOrt
+    -boolean verrechnungAbweichend
+    -String verrechnungVorname
+    -String verrechnungNachname
+    -String verrechnungStrasse
+    -String verrechnungPlz
+    -String verrechnungOrt
+  }
+
+  class Kunde {
+    -int kundenId
+    -String vorname
+    -String nachname
+    -String firma
+    -String telefon
+    -String natel
+    -String email
+    -String strasse
+    -String plz
+    -String ort
+  }
+
+  class Benutzer {
+    -String benutzerId
+    -String benutzername
+    -String vorname
+    -String nachname
+    -String email
+    -String passwortHash
+    -Rolle rolle
+  }
+
+  class Arbeitstyp {
+    -int arbeitstypId
+    -String bezeichnung
+  }
+
+  class Rapport {
+    -int rapportId
+    -LocalDate datum
+    -BigDecimal stunden
+    -String arbeitsbeschreibung
+    -String material
+    -LocalDate freigabeDatum
+  }
+
+  class Rechnung {
+    -int rechnungId
+    -LocalDate rechnungsdatum
+    -BigDecimal betrag
+    -String positionen
+  }
+
+  %% ── Repositories ────────────────────────────────────
+  class AuftragRepository {
+    <<interface>>
+    +findByStatus(AuftragStatus) List~Auftrag~
+    +findByBereichsleiter(Benutzer) List~Auftrag~
+    +findByMitarbeiter(Benutzer) List~Auftrag~
+  }
+
+  class KundeRepository {
+    <<interface>>
+    +findByNachname(String) List~Kunde~
+  }
+
+  class BenutzerRepository {
+    <<interface>>
+    +findByRolle(Rolle) List~Benutzer~
+    +findByBenutzername(String) Optional~Benutzer~
+  }
+
+  class RapportRepository {
+    <<interface>>
+    +findByAuftrag(Auftrag) List~Rapport~
+  }
+
+  class RechnungRepository {
+    <<interface>>
+    +findByAuftrag(Auftrag) Optional~Rechnung~
+  }
+
+  %% ── Services ────────────────────────────────────────
+  class AuftragService {
+    +erfassen(AuftragDTO) Auftrag
+    +disponieren(int, String, LocalDate) Auftrag
+    +alsAusgefuehrtMarkieren(int) Auftrag
+    +freigeben(int) Auftrag
+    +alsVerrechnetMarkieren(int) Auftrag
+    +findAll() List~Auftrag~
+    +findByStatus(AuftragStatus) List~Auftrag~
+    +findById(int) Auftrag
+  }
+
+  class RapportService {
+    +erstellen(RapportDTO) Rapport
+    +freigeben(int, String) Rapport
+    +findByAuftrag(int) List~Rapport~
+  }
+
+  class RechnungService {
+    +erstellen(int) Rechnung
+    +findByAuftrag(int) Optional~Rechnung~
+  }
+
+  %% ── Controller ──────────────────────────────────────
+  class AuftragController {
+    +liste(Model) String
+    +erfassungsFormular(Model) String
+    +speichern(AuftragDTO) String
+    +disponieren(int, DispositionDTO) String
+    +ausgefuehrt(int) String
+    +freigeben(int) String
+    +verrechnet(int) String
+    +drucken(int, Model) String
+  }
+
+  class RapportController {
+    +formular(int, Model) String
+    +speichern(int, RapportDTO) String
+  }
+
+  %% ── Beziehungen ─────────────────────────────────────
+  Auftrag --> AuftragStatus
+  Benutzer --> Rolle
+  Auftrag "n" --> "1" Kunde : kunde
+  Auftrag "n" --> "1" Benutzer : bereichsleiter
+  Auftrag "n" --> "0..1" Benutzer : mitarbeiter
+  Auftrag "1" --> "n" Rapport : rapporte
+  Auftrag "1" --> "0..1" Rechnung : rechnung
+  Auftrag "n" --> "n" Arbeitstyp : arbeitstypen
+
+  AuftragService --> AuftragRepository
+  AuftragService --> KundeRepository
+  AuftragService --> BenutzerRepository
+  RapportService --> RapportRepository
+  RechnungService --> RechnungRepository
+
+  AuftragController --> AuftragService
+  RapportController --> RapportService
+  AuftragController --> RechnungService
+`;
+
+const { svg } = await mermaid.render('diagram-svg', diagram);
+document.getElementById('diagram').innerHTML = svg;
+</script>
