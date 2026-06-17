@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><meta charset="UTF-8"><title>Wireframe – Druckansicht</title><link rel="stylesheet" href="_style.css"></head>
+<body>
+<div class="wf-page">
+
+  <div class="wf-nav">
+    <span class="logo">GLAUSER ILLNAU AG</span>
+    <div class="nav-links">
+      <span class="active">Aufträge</span>
+      <span>Neuer Auftrag</span>
+      <span>Benutzer</span>
+    </div>
+  </div>
+
+  <div class="wf-header">
+    <h1>Druckansicht – Auftragsdokument</h1>
+    <p>Alle Rollen – Auftragsdokument generieren / drucken</p>
+  </div>
+
+  <div class="wf-body">
+
+    <!-- Aktionsleiste (verschwindet beim Drucken) -->
+    <div class="wf-actions" style="margin-bottom:24px">
+      <div class="wf-btn primary">🖨 Drucken / Als PDF speichern</div>
+      <div class="wf-btn secondary">← Zurück zur Liste</div>
+    </div>
+
+    <!-- Druckdokument -->
+    <div style="border: 2px dashed #bbb; padding: 32px; background:#fff;">
+
+      <div class="print-header">
+        <h1>SERVICEAUFTRAG</h1>
+        <p>Glauser Illnau AG · Sanitär · Heizung · 8484 Illnau-Effretikon</p>
+      </div>
+
+      <div class="print-row">
+        <span class="lbl">Auftragsnummer:</span>
+        <span class="val">1024</span>
+        <span class="lbl" style="margin-left:80px">Status:</span>
+        <span class="val"><span class="badge freigegeben">FREIGEGEBEN</span></span>
+      </div>
+      <div class="print-row">
+        <span class="lbl">Datum:</span>
+        <span class="val">23.09.2024</span>
+        <span class="lbl" style="margin-left:80px">Zeit:</span>
+        <span class="val">10:00</span>
+      </div>
+
+      <div style="margin: 16px 0 8px; font-weight:bold; font-size:13px; text-transform:uppercase; letter-spacing:1px; color:#666; border-top: 1px solid #ddd; padding-top:12px">Kunde / Kontaktperson</div>
+      <div class="print-row"><span class="lbl">Name:</span><span class="val">Frau Beatrice Brandenberger</span></div>
+      <div class="print-row"><span class="lbl">Adresse Objekt:</span><span class="val">Obderdorfstrasse 11, 8484 Weisslingen</span></div>
+      <div class="print-row"><span class="lbl">Telefon:</span><span class="val">098 765 43 21</span></div>
+      <div class="print-row"><span class="lbl">Natel:</span><span class="val">079 797 97 97</span></div>
+      <div class="print-row"><span class="lbl">Adresse Verrechnung:</span><span class="val">Herr Rudolf Rutishauser, Unterdorfstrasse 22, 8484 Weisslingen</span></div>
+
+      <div style="margin: 16px 0 8px; font-weight:bold; font-size:13px; text-transform:uppercase; letter-spacing:1px; color:#666; border-top: 1px solid #ddd; padding-top:12px">Auszuführende Arbeiten</div>
+      <div class="print-row">
+        <span class="lbl">Arbeitstyp:</span>
+        <span class="val">
+          <span style="border:1px solid #333; padding:1px 6px; margin-right:6px; font-size:12px">✕ Reparatur</span>
+          <span style="border:1px solid #333; padding:1px 6px; margin-right:6px; font-size:12px">✕ Sanitär</span>
+          <span style="border:1px solid #aaa; padding:1px 6px; margin-right:6px; font-size:12px; color:#aaa">☐ Heizung</span>
+          <span style="border:1px solid #aaa; padding:1px 6px; font-size:12px; color:#aaa">☐ Garantie</span>
+        </span>
+      </div>
+      <div class="print-row"><span class="lbl">Beschreibung:</span><span class="val">Wasserhahn in der Küche tropft/undicht.</span></div>
+      <div class="print-row"><span class="lbl">Terminwunsch:</span><span class="val">So schnell wie möglich</span></div>
+
+      <div style="margin: 16px 0 8px; font-weight:bold; font-size:13px; text-transform:uppercase; letter-spacing:1px; color:#666; border-top: 1px solid #ddd; padding-top:12px">Disposition</div>
+      <div class="print-row"><span class="lbl">Zugewiesener MA:</span><span class="val">Hans Müller</span></div>
+      <div class="print-row"><span class="lbl">Geplanter Termin:</span><span class="val">25.09.2024</span></div>
+
+      <div style="margin: 16px 0 8px; font-weight:bold; font-size:13px; text-transform:uppercase; letter-spacing:1px; color:#666; border-top: 1px solid #ddd; padding-top:12px">Rapport</div>
+      <div class="print-row"><span class="lbl">Ausführungsdatum:</span><span class="val">25.09.2024</span></div>
+      <div class="print-row"><span class="lbl">Arbeitsstunden:</span><span class="val">1.5 h</span></div>
+      <div class="print-row"><span class="lbl">Arbeitsbeschreibung:</span><span class="val">Dichtung des Wasserhahns ersetzt, Dichtheit geprüft.</span></div>
+      <div class="print-row"><span class="lbl">Material:</span><span class="val">1× Dichtungsset Hansgrohe Art. 97567</span></div>
+      <div class="print-row"><span class="lbl">Freigegeben von:</span><span class="val">BL Max Glauser, 26.09.2024</span></div>
+
+      <!-- Unterschriften -->
+      <div class="sig-row" style="margin-top:48px">
+        <div class="sig-box">Datum / Unterschrift Kunde</div>
+        <div class="sig-box">Datum / Unterschrift Mitarbeiter</div>
+        <div class="sig-box">Datum / Unterschrift Bereichsleiter</div>
+      </div>
+
+    </div><!-- end Druckdokument -->
+
+    <div class="wf-note" style="margin-top:12px">Gestrichelter Rahmen = Druckbereich. Navigation und Aktionsleiste erscheinen nicht im Ausdruck (CSS @media print).</div>
+
+  </div>
+  <div class="wf-wireframe-label">WIREFRAME – 05 Druckansicht – Schritt 10 – Samuel Pereira Paredes</div>
+</div>
+</body></html>

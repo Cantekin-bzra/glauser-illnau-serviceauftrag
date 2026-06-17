@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><meta charset="UTF-8"><title>Wireframe – Disposition</title><link rel="stylesheet" href="_style.css"></head>
+<body>
+<div class="wf-page">
+
+  <div class="wf-nav">
+    <span class="logo">GLAUSER ILLNAU AG</span>
+    <div class="nav-links">
+      <span class="active">Aufträge</span>
+      <span>Neuer Auftrag</span>
+      <span>Benutzer</span>
+    </div>
+  </div>
+
+  <div class="wf-header">
+    <h1>Auftrag disponieren</h1>
+    <p>Bereichsleiter – Mitarbeiter zuweisen und Termin festlegen</p>
+  </div>
+
+  <div class="wf-body">
+
+    <div class="wf-alert info">
+      Auftrag Nr. 1024 ist im Status <strong>ERFASST</strong>. Nach der Disposition wechselt er zu <strong>DISPONIERT</strong>.
+    </div>
+
+    <!-- Auftragsübersicht (read-only) -->
+    <div class="wf-section">
+      <div class="wf-section-title">Auftragsdetails (schreibgeschützt)</div>
+      <div class="wf-info">
+        <div class="wf-info-row">
+          <span class="lbl">Auftragsnummer</span><span class="val">1024</span>
+          <span class="lbl">Erfasst am</span><span class="val">23.09.2024, 10:00</span>
+        </div>
+        <div class="wf-info-row">
+          <span class="lbl">Kunde</span><span class="val">Frau Beatrice Brandenberger</span>
+          <span class="lbl">Telefon</span><span class="val">098 765 43 21</span>
+        </div>
+        <div class="wf-info-row">
+          <span class="lbl">Objekt-Adresse</span><span class="val">Obderdorfstrasse 11, 8484 Weisslingen</span>
+        </div>
+        <div class="wf-info-row">
+          <span class="lbl">Arbeitstyp</span><span class="val">Reparatur, Sanitär</span>
+          <span class="lbl">Terminwunsch</span><span class="val">So schnell wie möglich</span>
+        </div>
+        <div class="wf-info-row">
+          <span class="lbl">Beschreibung</span><span class="val">Wasserhahn in der Küche tropft/undicht.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disposition -->
+    <div class="wf-section">
+      <div class="wf-section-title">Disposition</div>
+      <div class="wf-row">
+        <div class="wf-field">
+          <label>Mitarbeiter zuweisen *</label>
+          <div class="wf-select">Mitarbeiter auswählen ▾</div>
+          <div class="wf-note">Nur Benutzer mit Rolle MITARBEITER werden angezeigt.</div>
+        </div>
+        <div class="wf-field" style="flex:0 0 180px">
+          <label>Geplanter Termin *</label>
+          <div class="wf-input" style="color:#aaa">TT.MM.JJJJ</div>
+        </div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-field">
+          <label>Interne Bemerkung (optional)</label>
+          <div class="wf-textarea">Hinweise für den Mitarbeiter ...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf-actions">
+      <div class="wf-btn primary">Disponieren & Speichern</div>
+      <div class="wf-btn secondary">Abbrechen</div>
+    </div>
+
+  </div>
+  <div class="wf-wireframe-label">WIREFRAME – 03 Disposition – Schritt 10 – Samuel Pereira Paredes</div>
+</div>
+</body></html>

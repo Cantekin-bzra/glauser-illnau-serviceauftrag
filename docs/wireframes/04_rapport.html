@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><meta charset="UTF-8"><title>Wireframe – Rapport</title><link rel="stylesheet" href="_style.css"></head>
+<body>
+<div class="wf-page">
+
+  <div class="wf-nav">
+    <span class="logo">GLAUSER ILLNAU AG</span>
+    <div class="nav-links">
+      <span class="active">Aufträge</span>
+      <span>Neuer Auftrag</span>
+      <span>Benutzer</span>
+    </div>
+  </div>
+
+  <div class="wf-header">
+    <h1>Rapport erfassen</h1>
+    <p>Mitarbeiter – Ausgeführte Arbeiten rapportieren</p>
+  </div>
+
+  <div class="wf-body">
+
+    <div class="wf-alert info">
+      Auftrag Nr. 1023 ist im Status <strong>DISPONIERT</strong>. Nach dem Rapport wechselt er zu <strong>AUSGEFÜHRT</strong>.
+    </div>
+
+    <!-- Auftragsübersicht -->
+    <div class="wf-section">
+      <div class="wf-section-title">Auftragsdetails (schreibgeschützt)</div>
+      <div class="wf-info">
+        <div class="wf-info-row">
+          <span class="lbl">Auftragsnummer</span><span class="val">1023</span>
+          <span class="lbl">Geplanter Termin</span><span class="val">25.09.2024</span>
+        </div>
+        <div class="wf-info-row">
+          <span class="lbl">Kunde</span><span class="val">Herr Rudolf Rutishauser</span>
+          <span class="lbl">Telefon</span><span class="val">044 888 11 22</span>
+        </div>
+        <div class="wf-info-row">
+          <span class="lbl">Objekt-Adresse</span><span class="val">Unterdorfstrasse 22, 8484 Weisslingen</span>
+        </div>
+        <div class="wf-info-row">
+          <span class="lbl">Arbeitstyp</span><span class="val">Heizung</span>
+        </div>
+        <div class="wf-info-row">
+          <span class="lbl">Beschreibung</span><span class="val">Heizung startet nicht, keine Wärme.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rapport -->
+    <div class="wf-section">
+      <div class="wf-section-title">Rapport</div>
+      <div class="wf-row">
+        <div class="wf-field" style="flex:0 0 160px">
+          <label>Ausführungsdatum *</label>
+          <div class="wf-input" style="color:#aaa">TT.MM.JJJJ</div>
+        </div>
+        <div class="wf-field" style="flex:0 0 120px">
+          <label>Arbeitsstunden *</label>
+          <div class="wf-input" style="color:#aaa">z.B. 2.5</div>
+        </div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-field">
+          <label>Arbeitsbeschreibung *</label>
+          <div class="wf-textarea">Beschreibung der ausgeführten Arbeiten ...</div>
+        </div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-field">
+          <label>Verwendetes Material</label>
+          <div class="wf-textarea">Liste der verwendeten Materialien und Ersatzteile ...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Freigabe-Sektion (nur für Bereichsleiter sichtbar) -->
+    <div class="wf-section">
+      <div class="wf-section-title">Freigabe (nur Bereichsleiter)</div>
+      <div style="opacity:0.4">
+        <div class="wf-info" style="margin-bottom:12px">
+          <div class="wf-info-row">
+            <span class="lbl">Rapport eingereicht von</span><span class="val">Hans Müller</span>
+            <span class="lbl">am</span><span class="val">25.09.2024</span>
+          </div>
+        </div>
+        <div class="wf-actions">
+          <div class="wf-btn primary">Rapport freigeben</div>
+          <div class="wf-btn danger">Zurückweisen</div>
+        </div>
+      </div>
+      <div class="wf-note">Diese Sektion ist nur für Bereichsleiter sichtbar, nachdem der MA den Rapport eingereicht hat.</div>
+    </div>
+
+    <div class="wf-actions">
+      <div class="wf-btn primary">Rapport speichern & Auftrag als ausgeführt markieren</div>
+      <div class="wf-btn secondary">Abbrechen</div>
+    </div>
+
+  </div>
+  <div class="wf-wireframe-label">WIREFRAME – 04 Rapport – Schritt 10 – Samuel Pereira Paredes</div>
+</div>
+</body></html>

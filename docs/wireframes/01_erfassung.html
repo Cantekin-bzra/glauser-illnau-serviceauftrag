@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><meta charset="UTF-8"><title>Wireframe – Auftragserfassung</title><link rel="stylesheet" href="_style.css"></head>
+<body>
+<div class="wf-page">
+
+  <div class="wf-nav">
+    <span class="logo">GLAUSER ILLNAU AG</span>
+    <div class="nav-links">
+      <span>Aufträge</span>
+      <span class="active">Neuer Auftrag</span>
+      <span>Benutzer</span>
+    </div>
+  </div>
+
+  <div class="wf-header">
+    <h1>Neuen Serviceauftrag erfassen</h1>
+    <p>GL / Administration</p>
+  </div>
+
+  <div class="wf-body">
+
+    <!-- Auftragsdaten -->
+    <div class="wf-section">
+      <div class="wf-section-title">Auftragsdaten</div>
+      <div class="wf-row">
+        <div class="wf-field" style="flex:0 0 160px">
+          <label>Datum *</label>
+          <div class="wf-input">23.09.2024</div>
+        </div>
+        <div class="wf-field" style="flex:0 0 100px">
+          <label>Zeit *</label>
+          <div class="wf-input">10:00</div>
+        </div>
+        <div class="wf-field">
+          <label>Titel *</label>
+          <div class="wf-input" style="color:#aaa">Kurzbeschreibung des Auftrags</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kunde -->
+    <div class="wf-section">
+      <div class="wf-section-title">Kunde / Kontaktperson</div>
+      <div class="wf-row">
+        <div class="wf-field"><label>Vorname *</label><div class="wf-input" style="color:#aaa">Vorname</div></div>
+        <div class="wf-field"><label>Nachname *</label><div class="wf-input" style="color:#aaa">Nachname</div></div>
+        <div class="wf-field"><label>Firma</label><div class="wf-input" style="color:#aaa">Firmenname (optional)</div></div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-field"><label>Telefon *</label><div class="wf-input" style="color:#aaa">098 765 43 21</div></div>
+        <div class="wf-field"><label>Natel</label><div class="wf-input" style="color:#aaa">079 797 97 97</div></div>
+        <div class="wf-field"><label>E-Mail</label><div class="wf-input" style="color:#aaa">email@beispiel.ch</div></div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-field" style="flex:2"><label>Strasse *</label><div class="wf-input" style="color:#aaa">Strasse und Hausnummer</div></div>
+        <div class="wf-field" style="flex:0 0 80px"><label>PLZ *</label><div class="wf-input" style="color:#aaa">8484</div></div>
+        <div class="wf-field"><label>Ort *</label><div class="wf-input" style="color:#aaa">Weisslingen</div></div>
+      </div>
+    </div>
+
+    <!-- Objektadresse -->
+    <div class="wf-section">
+      <div class="wf-section-title">Adresse Objekt</div>
+      <div class="wf-checks" style="margin-bottom:12px">
+        <div class="wf-check"><div class="box checked"></div> Gleich wie Kundenadresse</div>
+      </div>
+      <div style="opacity:0.35">
+        <div class="wf-row">
+          <div class="wf-field" style="flex:2"><label>Strasse</label><div class="wf-input"></div></div>
+          <div class="wf-field" style="flex:0 0 80px"><label>PLZ</label><div class="wf-input"></div></div>
+          <div class="wf-field"><label>Ort</label><div class="wf-input"></div></div>
+        </div>
+      </div>
+      <div class="wf-note">Felder werden gesperrt wenn «gleich wie Kundenadresse» aktiviert ist.</div>
+    </div>
+
+    <!-- Verrechnungsadresse -->
+    <div class="wf-section">
+      <div class="wf-section-title">Adresse Verrechnung</div>
+      <div class="wf-checks" style="margin-bottom:12px">
+        <div class="wf-check"><div class="box"></div> Abweichend von Kundenadresse</div>
+      </div>
+      <div style="opacity:0.35">
+        <div class="wf-row">
+          <div class="wf-field"><label>Vorname</label><div class="wf-input"></div></div>
+          <div class="wf-field"><label>Nachname</label><div class="wf-input"></div></div>
+        </div>
+        <div class="wf-row">
+          <div class="wf-field" style="flex:2"><label>Strasse</label><div class="wf-input"></div></div>
+          <div class="wf-field" style="flex:0 0 80px"><label>PLZ</label><div class="wf-input"></div></div>
+          <div class="wf-field"><label>Ort</label><div class="wf-input"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arbeiten -->
+    <div class="wf-section">
+      <div class="wf-section-title">Auszuführende Arbeiten *</div>
+      <div class="wf-checks" style="margin-bottom:14px">
+        <div class="wf-check"><div class="box checked"></div> Reparatur</div>
+        <div class="wf-check"><div class="box checked"></div> Sanitär</div>
+        <div class="wf-check"><div class="box"></div> Heizung</div>
+        <div class="wf-check"><div class="box"></div> Garantie</div>
+      </div>
+      <div class="wf-field">
+        <label>Beschreibung *</label>
+        <div class="wf-textarea">Wasserhahn in der Küche tropft/undicht.</div>
+      </div>
+    </div>
+
+    <!-- Termin -->
+    <div class="wf-section">
+      <div class="wf-section-title">Terminwunsch</div>
+      <div class="wf-row">
+        <div class="wf-field" style="flex:2">
+          <label>Terminwunsch des Kunden</label>
+          <div class="wf-input" style="color:#aaa">z.B. «so schnell wie möglich» oder konkretes Datum</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf-actions">
+      <div class="wf-btn primary">Auftrag speichern</div>
+      <div class="wf-btn secondary">Abbrechen</div>
+    </div>
+
+  </div>
+  <div class="wf-wireframe-label">WIREFRAME – 01 Auftragserfassung – Schritt 10 – Samuel Pereira Paredes</div>
+</div>
+</body></html>

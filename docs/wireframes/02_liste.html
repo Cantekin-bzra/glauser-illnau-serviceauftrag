@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><meta charset="UTF-8"><title>Wireframe – Auftragsliste</title><link rel="stylesheet" href="_style.css"></head>
+<body>
+<div class="wf-page">
+
+  <div class="wf-nav">
+    <span class="logo">GLAUSER ILLNAU AG</span>
+    <div class="nav-links">
+      <span class="active">Aufträge</span>
+      <span>Neuer Auftrag</span>
+      <span>Benutzer</span>
+    </div>
+  </div>
+
+  <div class="wf-header">
+    <h1>Aufträge</h1>
+    <p>Übersicht aller Serviceaufträge nach Status</p>
+  </div>
+
+  <div class="wf-body">
+
+    <!-- Tabs -->
+    <div class="wf-tabs">
+      <div class="wf-tab active">Alle (12)</div>
+      <div class="wf-tab">Erfasst (3)</div>
+      <div class="wf-tab">Disponiert (4)</div>
+      <div class="wf-tab">Ausgeführt (2)</div>
+      <div class="wf-tab">Freigegeben (1)</div>
+      <div class="wf-tab">Verrechnet (2)</div>
+    </div>
+
+    <!-- Suche -->
+    <div class="wf-row" style="margin-bottom:16px">
+      <div class="wf-field" style="flex:2">
+        <label>Suche</label>
+        <div class="wf-input" style="color:#aaa">Name, Auftragsnummer, Ort ...</div>
+      </div>
+      <div class="wf-field" style="flex:0 0 160px">
+        <label>Arbeitstyp</label>
+        <div class="wf-select">Alle Typen ▾</div>
+      </div>
+      <div class="wf-field" style="flex:0 0 160px; justify-content:flex-end; padding-top:18px">
+        <div class="wf-btn primary" style="text-align:center">+ Neuer Auftrag</div>
+      </div>
+    </div>
+
+    <!-- Tabelle -->
+    <table class="wf-table">
+      <thead>
+        <tr>
+          <th style="width:60px">Nr.</th>
+          <th style="width:90px">Datum</th>
+          <th>Kunde</th>
+          <th>Arbeitstyp</th>
+          <th>Beschreibung</th>
+          <th style="width:110px">Status</th>
+          <th>Zuständig</th>
+          <th style="width:130px">Aktionen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1024</td>
+          <td>23.09.2024</td>
+          <td>Brandenberger B.</td>
+          <td>Reparatur, Sanitär</td>
+          <td>Wasserhahn Küche tropft</td>
+          <td><span class="badge erfasst">ERFASST</span></td>
+          <td>—</td>
+          <td>
+            <div class="wf-btn small primary">Detail</div>
+            <div class="wf-btn small secondary" style="margin-left:4px">Disponieren</div>
+          </td>
+        </tr>
+        <tr>
+          <td>1023</td>
+          <td>21.09.2024</td>
+          <td>Rutishauser R.</td>
+          <td>Heizung</td>
+          <td>Heizung startet nicht</td>
+          <td><span class="badge disponiert">DISPONIERT</span></td>
+          <td>Müller H.</td>
+          <td>
+            <div class="wf-btn small primary">Detail</div>
+          </td>
+        </tr>
+        <tr>
+          <td>1022</td>
+          <td>18.09.2024</td>
+          <td>Meier S.</td>
+          <td>Sanitär</td>
+          <td>WC-Spülung defekt</td>
+          <td><span class="badge ausgefuehrt">AUSGEFÜHRT</span></td>
+          <td>Müller H.</td>
+          <td>
+            <div class="wf-btn small primary">Detail</div>
+            <div class="wf-btn small secondary" style="margin-left:4px">Freigeben</div>
+          </td>
+        </tr>
+        <tr>
+          <td>1021</td>
+          <td>15.09.2024</td>
+          <td>Keller A.</td>
+          <td>Garantie, Sanitär</td>
+          <td>Dusche läuft nicht ab</td>
+          <td><span class="badge freigegeben">FREIGEGEBEN</span></td>
+          <td>Schneider P.</td>
+          <td>
+            <div class="wf-btn small primary">Detail</div>
+            <div class="wf-btn small secondary" style="margin-left:4px">Verrechnen</div>
+          </td>
+        </tr>
+        <tr>
+          <td>1020</td>
+          <td>10.09.2024</td>
+          <td>Fischer M.</td>
+          <td>Reparatur</td>
+          <td>Rohrbruch Keller</td>
+          <td><span class="badge verrechnet">VERRECHNET</span></td>
+          <td>Schneider P.</td>
+          <td>
+            <div class="wf-btn small primary">Detail</div>
+            <div class="wf-btn small secondary" style="margin-left:4px">Drucken</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div style="display:flex; justify-content:space-between; margin-top:16px; font-size:12px; color:#888">
+      <span>Zeige 1–5 von 12 Aufträgen</span>
+      <div style="display:flex; gap:6px">
+        <div class="wf-btn small secondary">‹ Zurück</div>
+        <div class="wf-btn small primary">Weiter ›</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="wf-wireframe-label">WIREFRAME – 02 Auftragsliste – Schritt 10 – Samuel Pereira Paredes</div>
+</div>
+</body></html>
