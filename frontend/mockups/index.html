@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Serviceaufträge – Glauser Illnau AG</title>
+  <link rel="stylesheet" href="_mockup.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="brand">GLAUSER ILLNAU AG <span>· Serviceaufträge</span></div>
+  <nav>
+    <a href="index.html" class="active">Aufträge</a>
+    <a href="erfassen.html">Neuer Auftrag</a>
+  </nav>
+  <div class="user">GL/Admin · Max Muster</div>
+</nav>
+
+<div class="page">
+
+  <div class="page-head">
+    <div>
+      <h1>Serviceaufträge</h1>
+      <p>Übersicht aller Aufträge nach Status</p>
+    </div>
+    <a href="erfassen.html" class="btn btn-primary">+ Neuer Auftrag</a>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+
+      <!-- Status-Tabs -->
+      <div class="tabs">
+        <a href="index.html" class="tab active">Alle <span style="opacity:.6">(12)</span></a>
+        <a href="index.html#erfasst" class="tab">Erfasst <span style="opacity:.6">(3)</span></a>
+        <a href="index.html#disponiert" class="tab">Disponiert <span style="opacity:.6">(4)</span></a>
+        <a href="index.html#ausgefuehrt" class="tab">Ausgeführt <span style="opacity:.6">(2)</span></a>
+        <a href="index.html#freigegeben" class="tab">Freigegeben <span style="opacity:.6">(1)</span></a>
+        <a href="index.html#verrechnet" class="tab">Verrechnet <span style="opacity:.6">(2)</span></a>
+      </div>
+
+      <!-- Suchleiste -->
+      <div class="search-bar">
+        <div class="form-group" style="flex:2">
+          <label>Suche</label>
+          <input class="form-control" placeholder="Name, Nr., Ort …" />
+        </div>
+        <div class="form-group" style="flex:0 0 160px">
+          <label>Arbeitstyp</label>
+          <select class="form-control">
+            <option>Alle Typen</option>
+            <option>Reparatur</option>
+            <option>Sanitär</option>
+            <option>Heizung</option>
+            <option>Garantie</option>
+          </select>
+        </div>
+        <div>
+          <button class="btn btn-secondary">Suchen</button>
+        </div>
+      </div>
+
+      <!-- Tabelle -->
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nr.</th>
+              <th>Datum</th>
+              <th>Kunde</th>
+              <th>Ort</th>
+              <th>Arbeitstyp</th>
+              <th>Status</th>
+              <th>Mitarbeiter</th>
+              <th>Aktionen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1024</strong></td>
+              <td>23.09.2024</td>
+              <td>Brandenberger B.</td>
+              <td>Weisslingen</td>
+              <td>Reparatur, Sanitär</td>
+              <td><span class="badge badge-blue">ERFASST</span></td>
+              <td>—</td>
+              <td class="actions">
+                <a href="disposition.html" class="btn btn-primary btn-sm">Disponieren</a>
+                <a href="drucken.html" class="btn btn-secondary btn-sm">Drucken</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>1023</strong></td>
+              <td>21.09.2024</td>
+              <td>Rutishauser R.</td>
+              <td>Weisslingen</td>
+              <td>Heizung</td>
+              <td><span class="badge badge-yellow">DISPONIERT</span></td>
+              <td>Müller H.</td>
+              <td class="actions">
+                <a href="rapport.html" class="btn btn-primary btn-sm">Rapport</a>
+                <a href="drucken.html" class="btn btn-secondary btn-sm">Drucken</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>1022</strong></td>
+              <td>18.09.2024</td>
+              <td>Meier S.</td>
+              <td>Illnau</td>
+              <td>Sanitär</td>
+              <td><span class="badge badge-purple">AUSGEFÜHRT</span></td>
+              <td>Müller H.</td>
+              <td class="actions">
+                <a href="rapport.html" class="btn btn-success btn-sm">Freigeben</a>
+                <a href="drucken.html" class="btn btn-secondary btn-sm">Drucken</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>1021</strong></td>
+              <td>15.09.2024</td>
+              <td>Keller A.</td>
+              <td>Effretikon</td>
+              <td>Garantie, Sanitär</td>
+              <td><span class="badge badge-green">FREIGEGEBEN</span></td>
+              <td>Schneider P.</td>
+              <td class="actions">
+                <a href="drucken.html" class="btn btn-success btn-sm">Verrechnen</a>
+                <a href="drucken.html" class="btn btn-secondary btn-sm">Drucken</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>1020</strong></td>
+              <td>10.09.2024</td>
+              <td>Fischer M.</td>
+              <td>Weisslingen</td>
+              <td>Reparatur</td>
+              <td><span class="badge badge-gray">VERRECHNET</span></td>
+              <td>Schneider P.</td>
+              <td class="actions">
+                <a href="drucken.html" class="btn btn-secondary btn-sm">Drucken</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <span>Zeige 1–5 von 12 Aufträgen</span>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-secondary btn-sm">‹ Zurück</button>
+          <button class="btn btn-secondary btn-sm">Weiter ›</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="_mockup.js"></script>
+</body>
+</html>

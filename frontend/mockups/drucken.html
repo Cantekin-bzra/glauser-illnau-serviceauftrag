@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Auftragsdokument #1024 – Glauser Illnau AG</title>
+  <link rel="stylesheet" href="_mockup.css">
+</head>
+<body>
+
+<nav class="navbar no-print">
+  <div class="brand">GLAUSER ILLNAU AG <span>· Serviceaufträge</span></div>
+  <nav>
+    <a href="index.html" class="active">Aufträge</a>
+    <a href="erfassen.html">Neuer Auftrag</a>
+  </nav>
+  <div class="user">GL/Admin · Max Muster</div>
+</nav>
+
+<div class="page">
+
+  <div class="breadcrumb no-print"><a href="index.html">Aufträge</a> › Auftrag #1024 › Drucken</div>
+
+  <!-- Aktionsleiste -->
+  <div class="no-print" style="display:flex;gap:10px;margin-bottom:20px">
+    <button class="btn btn-primary" onclick="window.print()">🖨 Drucken / Als PDF speichern</button>
+    <a href="index.html" class="btn btn-secondary">← Zurück zur Liste</a>
+  </div>
+
+  <!-- Druckdokument -->
+  <div class="card">
+    <div class="card-body">
+      <div class="print-doc">
+
+        <div class="doc-header">
+          <h1>SERVICEAUFTRAG</h1>
+          <p>Glauser Illnau AG · Sanitär &amp; Heizung · Obderdorfstrasse 1 · 8484 Illnau-Effretikon</p>
+          <p style="margin-top:4px">Tel. 052 000 00 00 · info@glauser-illnau.ch</p>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <span style="font-size:20px;font-weight:700;color:#1e3a8a">#1024</span>
+          <span class="badge badge-green" style="font-size:12px;padding:5px 14px">FREIGEGEBEN</span>
+        </div>
+
+        <div class="doc-section-title">Auftragsdaten</div>
+        <div class="doc-row"><span class="lbl">Datum / Zeit</span><span class="val">23.09.2024 · 10:00 Uhr</span></div>
+        <div class="doc-row"><span class="lbl">Terminwunsch</span><span class="val">So schnell wie möglich</span></div>
+        <div class="doc-row"><span class="lbl">Geplanter Termin</span><span class="val">25.09.2024</span></div>
+
+        <div class="doc-section-title">Kunde / Kontaktperson</div>
+        <div class="doc-row"><span class="lbl">Name</span><span class="val">Frau Beatrice Brandenberger</span></div>
+        <div class="doc-row"><span class="lbl">Telefon</span><span class="val">098 765 43 21</span></div>
+        <div class="doc-row"><span class="lbl">Natel</span><span class="val">079 797 97 97</span></div>
+        <div class="doc-row"><span class="lbl">Adresse Objekt</span><span class="val">Obderdorfstrasse 11, 8484 Weisslingen</span></div>
+        <div class="doc-row"><span class="lbl">Adresse Verrechnung</span><span class="val">Herr Rudolf Rutishauser, Unterdorfstrasse 22, 8484 Weisslingen</span></div>
+
+        <div class="doc-section-title">Auszuführende Arbeiten</div>
+        <div class="doc-row">
+          <span class="lbl">Arbeitstyp</span>
+          <span class="val">
+            <span style="border:1px solid #1e3a8a;padding:2px 8px;border-radius:3px;margin-right:6px;font-size:12px;color:#1e3a8a">✕ Reparatur</span>
+            <span style="border:1px solid #1e3a8a;padding:2px 8px;border-radius:3px;margin-right:6px;font-size:12px;color:#1e3a8a">✕ Sanitär</span>
+            <span style="border:1px solid #cbd5e1;padding:2px 8px;border-radius:3px;margin-right:6px;font-size:12px;color:#94a3b8">☐ Heizung</span>
+            <span style="border:1px solid #cbd5e1;padding:2px 8px;border-radius:3px;font-size:12px;color:#94a3b8">☐ Garantie</span>
+          </span>
+        </div>
+        <div class="doc-row"><span class="lbl">Beschreibung</span><span class="val">Wasserhahn in der Küche tropft/undicht.</span></div>
+
+        <div class="doc-section-title">Disposition</div>
+        <div class="doc-row"><span class="lbl">Zugewiesener Mitarbeiter</span><span class="val">Hans Müller</span></div>
+        <div class="doc-row"><span class="lbl">Ausführungsdatum</span><span class="val">25.09.2024</span></div>
+
+        <div class="doc-section-title">Rapport</div>
+        <div class="doc-row"><span class="lbl">Arbeitsstunden</span><span class="val">1.5 h</span></div>
+        <div class="doc-row"><span class="lbl">Arbeitsbeschreibung</span><span class="val">Dichtung des Wasserhahns in der Küche ersetzt. Dichtheit unter Betriebsdruck geprüft. Keine weiteren Mängel festgestellt.</span></div>
+        <div class="doc-row"><span class="lbl">Material</span><span class="val">1× Dichtungsset Hansgrohe Art. 97567</span></div>
+        <div class="doc-row"><span class="lbl">Freigegeben von</span><span class="val">BL Max Glauser</span></div>
+        <div class="doc-row"><span class="lbl">Freigabe am</span><span class="val">26.09.2024</span></div>
+
+        <!-- Unterschriften -->
+        <div class="sig-row">
+          <div class="sig-box">Datum / Unterschrift Kunde</div>
+          <div class="sig-box">Datum / Unterschrift Mitarbeiter</div>
+          <div class="sig-box">Datum / Unterschrift Bereichsleiter</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="_mockup.js"></script>
+</body>
+</html>

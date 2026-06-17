@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Auftrag erfassen – Glauser Illnau AG</title>
+  <link rel="stylesheet" href="_mockup.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="brand">GLAUSER ILLNAU AG <span>· Serviceaufträge</span></div>
+  <nav>
+    <a href="index.html">Aufträge</a>
+    <a href="erfassen.html" class="active">Neuer Auftrag</a>
+  </nav>
+  <div class="user">GL/Admin · Max Muster</div>
+</nav>
+
+<div class="page">
+
+  <div class="breadcrumb"><a href="index.html">Aufträge</a> › Neuer Auftrag</div>
+
+  <div class="page-head">
+    <div>
+      <h1>Neuen Serviceauftrag erfassen</h1>
+      <p>GL / Administration</p>
+    </div>
+  </div>
+
+  <div id="success-msg" class="alert alert-success" style="display:none">
+    ✓ Auftrag wurde erfolgreich erfasst. <a href="index.html" style="margin-left:12px;font-weight:700">→ Zur Auftragsliste</a>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <form id="auftrag-form" action="#" method="post">
+
+        <!-- Auftragsdaten -->
+        <div class="form-section">
+          <div class="form-section-title">Auftragsdaten</div>
+          <div class="form-row">
+            <div class="form-group" style="flex:0 0 160px">
+              <label>Datum <span class="req">*</span></label>
+              <input type="date" class="form-control" value="2024-09-23" required>
+            </div>
+            <div class="form-group" style="flex:0 0 120px">
+              <label>Zeit <span class="req">*</span></label>
+              <input type="time" class="form-control" value="10:00" required>
+            </div>
+            <div class="form-group">
+              <label>Titel <span class="req">*</span></label>
+              <input type="text" class="form-control" placeholder="Kurzbeschreibung des Auftrags" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kunde -->
+        <div class="form-section">
+          <div class="form-section-title">Kunde / Kontaktperson</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Vorname <span class="req">*</span></label>
+              <input type="text" class="form-control" placeholder="Vorname" required>
+            </div>
+            <div class="form-group">
+              <label>Nachname <span class="req">*</span></label>
+              <input type="text" class="form-control" placeholder="Nachname" required>
+            </div>
+            <div class="form-group">
+              <label>Firma</label>
+              <input type="text" class="form-control" placeholder="Firmenname (optional)">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Telefon <span class="req">*</span></label>
+              <input type="tel" class="form-control" placeholder="044 000 00 00" required>
+            </div>
+            <div class="form-group">
+              <label>Natel</label>
+              <input type="tel" class="form-control" placeholder="079 000 00 00">
+            </div>
+            <div class="form-group">
+              <label>E-Mail</label>
+              <input type="email" class="form-control" placeholder="email@beispiel.ch">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="flex:3">
+              <label>Strasse <span class="req">*</span></label>
+              <input type="text" class="form-control" placeholder="Strasse und Hausnummer" required>
+            </div>
+            <div class="form-group" style="flex:0 0 90px">
+              <label>PLZ <span class="req">*</span></label>
+              <input type="text" class="form-control" placeholder="8484" required>
+            </div>
+            <div class="form-group">
+              <label>Ort <span class="req">*</span></label>
+              <input type="text" class="form-control" placeholder="Weisslingen" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Objektadresse -->
+        <div class="form-section">
+          <div class="form-section-title">Adresse Objekt</div>
+          <div class="toggle-row">
+            <input type="checkbox" id="objekt-gleich" checked>
+            <label for="objekt-gleich" style="cursor:pointer;font-size:13px">Gleich wie Kundenadresse</label>
+          </div>
+          <div id="objekt-fields" class="form-row form-disabled">
+            <div class="form-group" style="flex:3">
+              <label>Strasse</label>
+              <input type="text" class="form-control" placeholder="Strasse und Hausnummer">
+            </div>
+            <div class="form-group" style="flex:0 0 90px">
+              <label>PLZ</label>
+              <input type="text" class="form-control" placeholder="8484">
+            </div>
+            <div class="form-group">
+              <label>Ort</label>
+              <input type="text" class="form-control" placeholder="Weisslingen">
+            </div>
+          </div>
+        </div>
+
+        <!-- Verrechnungsadresse -->
+        <div class="form-section">
+          <div class="form-section-title">Adresse Verrechnung</div>
+          <div class="toggle-row">
+            <input type="checkbox" id="verrechnung-abweichend">
+            <label for="verrechnung-abweichend" style="cursor:pointer;font-size:13px">Abweichend von Kundenadresse</label>
+          </div>
+          <div id="verrechnung-fields" class="form-disabled">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Vorname</label>
+                <input type="text" class="form-control" placeholder="Vorname">
+              </div>
+              <div class="form-group">
+                <label>Nachname</label>
+                <input type="text" class="form-control" placeholder="Nachname">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group" style="flex:3">
+                <label>Strasse</label>
+                <input type="text" class="form-control" placeholder="Strasse und Hausnummer">
+              </div>
+              <div class="form-group" style="flex:0 0 90px">
+                <label>PLZ</label>
+                <input type="text" class="form-control" placeholder="8484">
+              </div>
+              <div class="form-group">
+                <label>Ort</label>
+                <input type="text" class="form-control" placeholder="Weisslingen">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arbeiten -->
+        <div class="form-section">
+          <div class="form-section-title">Auszuführende Arbeiten</div>
+          <div class="check-group" style="margin-bottom:16px">
+            <label class="check-item"><input type="checkbox" checked> Reparatur</label>
+            <label class="check-item"><input type="checkbox" checked> Sanitär</label>
+            <label class="check-item"><input type="checkbox"> Heizung</label>
+            <label class="check-item"><input type="checkbox"> Garantie</label>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Beschreibung <span class="req">*</span></label>
+              <textarea class="form-control" placeholder="Detaillierte Beschreibung der auszuführenden Arbeiten …" required></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Termin -->
+        <div class="form-section">
+          <div class="form-section-title">Terminwunsch</div>
+          <div class="form-row">
+            <div class="form-group" style="flex:2">
+              <label>Terminwunsch des Kunden</label>
+              <input type="text" class="form-control" placeholder="z.B. «so schnell wie möglich» oder konkretes Datum">
+              <div class="form-hint">Freitext – z.B. Wochentag, Uhrzeit oder Dringlichkeit</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-actions">
+          <button type="submit" class="btn btn-primary">Auftrag speichern</button>
+          <a href="index.html" class="btn btn-secondary">Abbrechen</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="_mockup.js"></script>
+</body>
+</html>

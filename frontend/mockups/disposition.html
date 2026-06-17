@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Auftrag disponieren – Glauser Illnau AG</title>
+  <link rel="stylesheet" href="_mockup.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="brand">GLAUSER ILLNAU AG <span>· Serviceaufträge</span></div>
+  <nav>
+    <a href="index.html" class="active">Aufträge</a>
+    <a href="erfassen.html">Neuer Auftrag</a>
+  </nav>
+  <div class="user">Bereichsleiter · Max Glauser</div>
+</nav>
+
+<div class="page">
+
+  <div class="breadcrumb"><a href="index.html">Aufträge</a> › Auftrag #1024 › Disponieren</div>
+
+  <div class="page-head">
+    <div>
+      <h1>Auftrag disponieren</h1>
+      <p>Bereichsleiter – Mitarbeiter zuweisen und Termin festlegen</p>
+    </div>
+    <span class="badge badge-blue" style="font-size:13px;padding:6px 14px">ERFASST</span>
+  </div>
+
+  <div class="alert alert-info">
+    ℹ Nach der Disposition wechselt der Auftrag von <strong>ERFASST</strong> zu <strong>DISPONIERT</strong> und der zugewiesene Mitarbeiter wird benachrichtigt.
+  </div>
+
+  <div id="success-msg" class="alert alert-success" style="display:none">
+    ✓ Auftrag #1024 wurde disponiert. <a href="index.html" style="margin-left:12px;font-weight:700">→ Zur Auftragsliste</a>
+  </div>
+
+  <!-- Auftragsdetails (read-only) -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-header">
+      <div>
+        <h2>Auftragsdetails</h2>
+        <p>Schreibgeschützt</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="info-box" style="margin:0">
+        <div class="info-grid">
+          <div class="info-item"><div class="lbl">Auftragsnummer</div><div class="val">#1024</div></div>
+          <div class="info-item"><div class="lbl">Erfasst am</div><div class="val">23.09.2024, 10:00</div></div>
+          <div class="info-item"><div class="lbl">Kunde</div><div class="val">Frau Beatrice Brandenberger</div></div>
+          <div class="info-item"><div class="lbl">Telefon</div><div class="val">098 765 43 21 · 079 797 97 97</div></div>
+          <div class="info-item"><div class="lbl">Objektadresse</div><div class="val">Obderdorfstrasse 11, 8484 Weisslingen</div></div>
+          <div class="info-item"><div class="lbl">Terminwunsch</div><div class="val">So schnell wie möglich</div></div>
+          <div class="info-item"><div class="lbl">Arbeitstyp</div><div class="val">Reparatur, Sanitär</div></div>
+          <div class="info-item" style="grid-column:1/-1"><div class="lbl">Beschreibung</div><div class="val">Wasserhahn in der Küche tropft/undicht.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dispositionsformular -->
+  <div class="card">
+    <div class="card-header"><h2>Disposition</h2></div>
+    <div class="card-body">
+      <form id="disposition-form" action="index.html">
+        <div class="form-section">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Mitarbeiter zuweisen <span class="req">*</span></label>
+              <select class="form-control" required>
+                <option value="">— Mitarbeiter auswählen —</option>
+                <option>Hans Müller</option>
+                <option>Peter Schneider</option>
+                <option>Anna Weber</option>
+              </select>
+              <div class="form-hint">Nur Benutzer mit Rolle MITARBEITER werden angezeigt.</div>
+            </div>
+            <div class="form-group" style="flex:0 0 200px">
+              <label>Geplanter Termin <span class="req">*</span></label>
+              <input type="date" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Interne Bemerkung</label>
+              <textarea class="form-control" placeholder="Hinweise für den Mitarbeiter (optional) …"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-actions">
+          <button type="submit" class="btn btn-primary">Disponieren &amp; Speichern</button>
+          <a href="index.html" class="btn btn-secondary">Abbrechen</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<script src="_mockup.js"></script>
+</body>
+</html>

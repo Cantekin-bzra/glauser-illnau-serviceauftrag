@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rapport erfassen – Glauser Illnau AG</title>
+  <link rel="stylesheet" href="_mockup.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="brand">GLAUSER ILLNAU AG <span>· Serviceaufträge</span></div>
+  <nav>
+    <a href="index.html" class="active">Aufträge</a>
+    <a href="erfassen.html">Neuer Auftrag</a>
+  </nav>
+  <div class="user">Mitarbeiter · Hans Müller</div>
+</nav>
+
+<div class="page">
+
+  <div class="breadcrumb"><a href="index.html">Aufträge</a> › Auftrag #1023 › Rapport</div>
+
+  <div class="page-head">
+    <div>
+      <h1>Rapport erfassen</h1>
+      <p>Mitarbeiter – Ausgeführte Arbeiten dokumentieren</p>
+    </div>
+    <span class="badge badge-yellow" style="font-size:13px;padding:6px 14px">DISPONIERT</span>
+  </div>
+
+  <div class="alert alert-info">
+    ℹ Nach dem Speichern des Rapports wechselt der Auftrag zu <strong>AUSGEFÜHRT</strong>. Der Bereichsleiter muss den Rapport danach noch prüfen und freigeben.
+  </div>
+
+  <div id="success-msg" class="alert alert-success" style="display:none">
+    ✓ Rapport wurde gespeichert. Auftrag ist jetzt <strong>AUSGEFÜHRT</strong>. <a href="index.html" style="margin-left:12px;font-weight:700">→ Zur Auftragsliste</a>
+  </div>
+
+  <!-- Auftragsdetails -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-header">
+      <div><h2>Auftragsdetails</h2><p>Schreibgeschützt</p></div>
+    </div>
+    <div class="card-body">
+      <div class="info-box" style="margin:0">
+        <div class="info-grid">
+          <div class="info-item"><div class="lbl">Auftragsnummer</div><div class="val">#1023</div></div>
+          <div class="info-item"><div class="lbl">Geplanter Termin</div><div class="val">25.09.2024</div></div>
+          <div class="info-item"><div class="lbl">Kunde</div><div class="val">Herr Rudolf Rutishauser</div></div>
+          <div class="info-item"><div class="lbl">Telefon</div><div class="val">044 888 11 22</div></div>
+          <div class="info-item"><div class="lbl">Objektadresse</div><div class="val">Unterdorfstrasse 22, 8484 Weisslingen</div></div>
+          <div class="info-item"><div class="lbl">Arbeitstyp</div><div class="val">Heizung</div></div>
+          <div class="info-item" style="grid-column:1/-1"><div class="lbl">Beschreibung</div><div class="val">Heizung startet nicht, keine Wärme im ganzen Haus.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rapport-Formular (Mitarbeiter) -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-header"><h2>Rapport</h2></div>
+    <div class="card-body">
+      <form id="rapport-form" action="index.html">
+        <div class="form-row">
+          <div class="form-group" style="flex:0 0 180px">
+            <label>Ausführungsdatum <span class="req">*</span></label>
+            <input type="date" class="form-control" required>
+          </div>
+          <div class="form-group" style="flex:0 0 150px">
+            <label>Arbeitsstunden <span class="req">*</span></label>
+            <input type="number" class="form-control" placeholder="z.B. 2.5" step="0.5" min="0.5" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Arbeitsbeschreibung <span class="req">*</span></label>
+            <textarea class="form-control" placeholder="Was wurde genau ausgeführt? Welche Probleme wurden festgestellt und behoben?" required></textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Verwendetes Material</label>
+            <textarea class="form-control" placeholder="Liste der verwendeten Materialien, Ersatzteile mit Artikelnummern …"></textarea>
+          </div>
+        </div>
+
+        <div class="btn-actions">
+          <button type="submit" class="btn btn-primary">Rapport speichern &amp; als ausgeführt markieren</button>
+          <a href="index.html" class="btn btn-secondary">Abbrechen</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Freigabe (nur Bereichsleiter) -->
+  <div class="card" style="opacity:.5">
+    <div class="card-header">
+      <div><h2>Freigabe</h2><p>Nur für Bereichsleiter sichtbar – nach Einreichung des Rapports</p></div>
+      <span class="badge badge-gray">GESPERRT</span>
+    </div>
+    <div class="card-body" style="pointer-events:none">
+      <div class="info-box" style="margin-bottom:16px">
+        <div class="info-grid">
+          <div class="info-item"><div class="lbl">Rapport eingereicht von</div><div class="val">Hans Müller</div></div>
+          <div class="info-item"><div class="lbl">Eingereicht am</div><div class="val">25.09.2024</div></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-success">✓ Rapport freigeben</button>
+        <button class="btn btn-danger">✕ Zurückweisen</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="_mockup.js"></script>
+</body>
+</html>
