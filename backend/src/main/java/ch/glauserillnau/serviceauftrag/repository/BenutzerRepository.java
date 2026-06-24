@@ -9,5 +9,7 @@ import java.util.Optional;
 
 public interface BenutzerRepository extends JpaRepository<Benutzer, Integer> {
     List<Benutzer> findByRolleAndAktivTrue(Rolle rolle);
+    List<Benutzer> findByRolle(Rolle rolle);
+    List<Benutzer> findByAktivTrue();
     Optional<Benutzer> findByBenutzername(String benutzername);
 }
