@@ -25,7 +25,7 @@ class BenutzerRepositoryTest {
     void save_andFindByBenutzername() {
         benutzerRepository.save(Benutzer.builder()
                 .benutzername("bl.test").passwortHash("hash")
-                .vorname("Brigitte").nachname("Lüscher")
+                .vorname("Brigitte").nachname("Lüscher").email("bl.test@glauser.ch")
                 .rolle(Rolle.BEREICHSLEITER).aktiv(true).build());
 
         Optional<Benutzer> result = benutzerRepository.findByBenutzername("bl.test");
@@ -47,15 +47,15 @@ class BenutzerRepositoryTest {
     void findByRolle_mitarbeiter() {
         benutzerRepository.save(Benutzer.builder()
                 .benutzername("ma.one").passwortHash("h")
-                .vorname("Hans").nachname("Eins")
+                .vorname("Hans").nachname("Eins").email("ma.one@glauser.ch")
                 .rolle(Rolle.MITARBEITER).aktiv(true).build());
         benutzerRepository.save(Benutzer.builder()
                 .benutzername("ma.two").passwortHash("h")
-                .vorname("Peter").nachname("Zwei")
+                .vorname("Peter").nachname("Zwei").email("ma.two@glauser.ch")
                 .rolle(Rolle.MITARBEITER).aktiv(true).build());
         benutzerRepository.save(Benutzer.builder()
                 .benutzername("admin.one").passwortHash("h")
-                .vorname("Admin").nachname("Eins")
+                .vorname("Admin").nachname("Eins").email("admin.one@glauser.ch")
                 .rolle(Rolle.ADMIN).aktiv(true).build());
 
         List<Benutzer> mitarbeiter = benutzerRepository.findByRolle(Rolle.MITARBEITER);
@@ -69,11 +69,11 @@ class BenutzerRepositoryTest {
     void findByAktivTrue_returnsOnlyActive() {
         benutzerRepository.save(Benutzer.builder()
                 .benutzername("aktiv.one").passwortHash("h")
-                .vorname("Aktiv").nachname("Eins")
+                .vorname("Aktiv").nachname("Eins").email("aktiv.one@glauser.ch")
                 .rolle(Rolle.MITARBEITER).aktiv(true).build());
         benutzerRepository.save(Benutzer.builder()
                 .benutzername("inaktiv.one").passwortHash("h")
-                .vorname("Inaktiv").nachname("Eins")
+                .vorname("Inaktiv").nachname("Eins").email("inaktiv.one@glauser.ch")
                 .rolle(Rolle.MITARBEITER).aktiv(false).build());
 
         List<Benutzer> aktive = benutzerRepository.findByAktivTrue();
@@ -87,15 +87,15 @@ class BenutzerRepositoryTest {
     void findByRolleAndAktivTrue() {
         benutzerRepository.save(Benutzer.builder()
                 .benutzername("ma.aktiv").passwortHash("h")
-                .vorname("MA").nachname("Aktiv")
+                .vorname("MA").nachname("Aktiv").email("ma.aktiv@glauser.ch")
                 .rolle(Rolle.MITARBEITER).aktiv(true).build());
         benutzerRepository.save(Benutzer.builder()
                 .benutzername("ma.inaktiv").passwortHash("h")
-                .vorname("MA").nachname("Inaktiv")
+                .vorname("MA").nachname("Inaktiv").email("ma.inaktiv@glauser.ch")
                 .rolle(Rolle.MITARBEITER).aktiv(false).build());
         benutzerRepository.save(Benutzer.builder()
                 .benutzername("bl.aktiv").passwortHash("h")
-                .vorname("BL").nachname("Aktiv")
+                .vorname("BL").nachname("Aktiv").email("bl.aktiv@glauser.ch")
                 .rolle(Rolle.BEREICHSLEITER).aktiv(true).build());
 
         List<Benutzer> result = benutzerRepository.findByRolleAndAktivTrue(Rolle.MITARBEITER);

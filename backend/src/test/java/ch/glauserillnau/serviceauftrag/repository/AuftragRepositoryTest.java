@@ -40,7 +40,7 @@ class AuftragRepositoryTest {
 
         mitarbeiter = benutzerRepository.save(Benutzer.builder()
                 .benutzername("ma.test").passwortHash("hash")
-                .vorname("Marc").nachname("Test")
+                .vorname("Marc").nachname("Test").email("ma.test@glauser.ch")
                 .rolle(Rolle.MITARBEITER).aktiv(true)
                 .build());
     }

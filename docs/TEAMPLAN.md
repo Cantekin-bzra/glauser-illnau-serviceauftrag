@@ -48,7 +48,7 @@
 **Zuständig:** Sami  
 **Branch:** `feature/database`  
 **Ziel:** Vollständiges Entity-Relationship-Diagramm mit allen Tabellen, Attributen, Primär- und Fremdschlüsseln, Datentypen (VARCHAR, DATE, ENUM, etc.) und Wertebereichen.  
-**Lieferobjekt:** `docs/erd/erd.png` + `docs/erd/erm-attribute.md`
+**Lieferobjekt:** `docs/erd/serviceauftrag_erd.html`
 
 ### Schritt 8 – Klassendiagramm (fakultativ)
 **Zuständig:** Gruppe  
@@ -104,11 +104,11 @@
 **Ziel:** SQL INSERT-Statements mit mindestens 10 realistischen Aufträgen in verschiedenen Statuswerten, inkl. Kunden, Mitarbeitern und Bereichsleitern.  
 **Lieferobjekt:** `sql/02_testdaten.sql`
 
-### Schritt 14 – Supabase-Setup
+### Schritt 14 – Lokales PostgreSQL-Setup
 **Zuständig:** Sami  
 **Branch:** `feature/database`  
-**Ziel:** PostgreSQL-Datenbank auf Supabase erstellen, Schema und Testdaten einspielen, Verbindungs-URL und Zugangsdaten sicher im Projekt hinterlegen (`.env` / `application.properties`).  
-**Lieferobjekt:** `docs/supabase-setup.md` (Anleitung ohne Passwörter)
+**Ziel:** Lokale PostgreSQL-Datenbank einrichten, Schema und Testdaten einspielen, Verbindungskonfiguration in `application.properties` hinterlegen.  
+**Lieferobjekt:** `docs/datenbank-setup.md`
 
 ---
 
@@ -145,10 +145,10 @@
 
 **Lieferobjekt:** `backend/src/main/java/.../controller/`
 
-### Schritt 19 – DB-Verbindung zu Supabase
+### Schritt 19 – DB-Verbindung (lokal PostgreSQL)
 **Zuständig:** Kenan  
 **Branch:** `feature/backend`  
-**Ziel:** `application.properties` mit Supabase-Verbindungsdaten konfigurieren, Verbindung testen, JPA-Dialect setzen.  
+**Ziel:** `application.properties` mit lokalen PostgreSQL-Verbindungsdaten konfigurieren, Verbindung testen, JPA-Dialect setzen.  
 **Lieferobjekt:** `backend/src/main/resources/application.properties`
 
 ---
@@ -164,7 +164,7 @@
 - Kontextuales Feedback (Bestätigungsmeldungen, Fehlermeldungen)
 - Druckfunktion für das Auftragsdokument (Browser-Print / PDF)  
 
-**Lieferobjekt:** `frontend/templates/` + `frontend/static/js/`
+**Lieferobjekt:** `backend/src/main/resources/templates/` + `backend/src/main/resources/static/js/`
 
 ---
 

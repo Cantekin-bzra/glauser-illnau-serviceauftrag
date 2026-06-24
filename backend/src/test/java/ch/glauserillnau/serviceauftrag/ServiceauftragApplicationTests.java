@@ -2,13 +2,10 @@ package ch.glauserillnau.serviceauftrag;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
-@TestPropertySource(properties = {
-    "spring.datasource.url=jdbc:postgresql://localhost:5432/serviceauftrag",
-    "spring.jpa.hibernate.ddl-auto=validate"
-})
+@ActiveProfiles("test")
 class ServiceauftragApplicationTests {
 
     @Test
