@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- HEAD fragment -->
+<head th:fragment="head(pageTitle)">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="${pageTitle} + ' – Glauser Illnau AG'">Glauser Illnau AG</title>
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+  <link rel="stylesheet" th:href="@{/css/print.css}">
+</head>
+
+<!-- NAVBAR fragment -->
+<nav th:fragment="navbar(activePage)" class="navbar no-print">
+  <div class="brand">GLAUSER ILLNAU AG <span>· Serviceaufträge</span></div>
+  <nav>
+    <a th:href="@{/auftraege}"
+       th:classappend="${activePage == 'liste'} ? 'active'">Aufträge</a>
+    <a th:href="@{/auftraege/neu}"
+       th:classappend="${activePage == 'erfassen'} ? 'active'">Neuer Auftrag</a>
+  </nav>
+  <div class="user">Angemeldet</div>
+</nav>
+
+<!-- FLASH MESSAGES fragment -->
+<div th:fragment="flash">
+  <div th:if="${success}" class="alert alert-success">
+    <span>✓</span> <span th:text="${success}"></span>
+  </div>
+  <div th:if="${error}" class="alert alert-error">
+    <span>✕</span> <span th:text="${error}"></span>
+  </div>
+</div>
+
+</html>

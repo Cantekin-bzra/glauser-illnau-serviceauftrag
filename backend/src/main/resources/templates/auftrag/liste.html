@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Aufträge')}"></head>
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('liste')}"></nav>
+
+<div class="page">
+  <div th:replace="~{fragments/layout :: flash}"></div>
+
+  <div class="page-head">
+    <div>
+      <h1>Serviceaufträge</h1>
+      <p>Übersicht aller Aufträge nach Status</p>
+    </div>
+    <a th:href="@{/auftraege/neu}" class="btn btn-primary no-print">+ Neuer Auftrag</a>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+
+      <!-- Status-Tabs -->
+      <div class="tabs">
+        <a th:href="@{/auftraege}" th:classappend="${statusFilter == null} ? ' active'" class="tab">
+          Alle
+        </a>
+        <a th:each="s : ${alleStatus}"
+           th:href="@{/auftraege(status=${s})}"
+           th:text="${s}"
+           th:classappend="${statusFilter == s} ? ' active'"
+           class="tab">
+        </a>
+      </div>
+
+      <!-- Tabelle -->
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nr.</th>
+              <th>Datum</th>
+              <th>Kunde</th>
+              <th>Ort</th>
+              <th>Arbeitstyp</th>
+              <th>Status</th>
+              <th>Mitarbeiter</th>
+              <th>Aktionen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:if="${#lists.isEmpty(auftraege)}">
+              <td colspan="8" style="text-align:center;padding:24px;color:#94a3b8">Keine Aufträge gefunden.</td>
+            </tr>
+            <tr th:each="a : ${auftraege}">
+              <td><strong th:text="'#' + ${a.auftragId}"></strong></td>
+              <td th:text="${#temporals.format(a.erfassungsdatum, 'dd.MM.yyyy')}"></td>
+              <td th:text="${a.kunde.vollname}"></td>
+              <td th:text="${a.kunde.ort}"></td>
+              <td>
+                <span th:each="t,i : ${a.arbeitstypen}">
+                  <span th:text="${t.bezeichnung}"></span><span th:if="${!i.last}">, </span>
+                </span>
+              </td>
+              <td>
+                <span th:switch="${a.status.name()}">
+                  <span th:case="'ERFASST'"     class="badge badge-blue"   th:text="${a.status}"></span>
+                  <span th:case="'DISPONIERT'"  class="badge badge-yellow" th:text="${a.status}"></span>
+                  <span th:case="'AUSGEFUEHRT'" class="badge badge-purple" th:text="${a.status}"></span>
+                  <span th:case="'FREIGEGEBEN'" class="badge badge-green"  th:text="${a.status}"></span>
+                  <span th:case="'VERRECHNET'"  class="badge badge-gray"   th:text="${a.status}"></span>
+                </span>
+              </td>
+              <td th:text="${a.mitarbeiter != null ? a.mitarbeiter.vollname : '—'}"></td>
+              <td class="actions">
+                <!-- Disponieren (nur ERFASST) -->
+                <a th:if="${a.status.name() == 'ERFASST'}"
+                   th:href="@{/auftraege/{id}/disponieren(id=${a.auftragId})}"
+                   class="btn btn-primary btn-sm">Disponieren</a>
+                <!-- Rapport (nur DISPONIERT) -->
+                <a th:if="${a.status.name() == 'DISPONIERT'}"
+                   th:href="@{/auftraege/{id}/rapport(id=${a.auftragId})}"
+                   class="btn btn-primary btn-sm">Rapport</a>
+                <!-- Freigeben (nur AUSGEFUEHRT) -->
+                <form th:if="${a.status.name() == 'AUSGEFUEHRT'}"
+                      th:action="@{/auftraege/{id}/freigeben(id=${a.auftragId})}" method="post" style="display:inline">
+                  <button type="submit" class="btn btn-success btn-sm">Freigeben</button>
+                </form>
+                <!-- Verrechnen (nur FREIGEGEBEN) -->
+                <form th:if="${a.status.name() == 'FREIGEGEBEN'}"
+                      th:action="@{/auftraege/{id}/verrechnet(id=${a.auftragId})}" method="post" style="display:inline">
+                  <button type="submit" class="btn btn-success btn-sm">Verrechnen</button>
+                </form>
+                <!-- Detail immer -->
+                <a th:href="@{/auftraege/{id}(id=${a.auftragId})}" class="btn btn-secondary btn-sm">Detail</a>
+                <a th:href="@{/auftraege/{id}/drucken(id=${a.auftragId})}" class="btn btn-secondary btn-sm">🖨</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Auftragsdokument')}"></head>
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('liste')}"></nav>
+
+<div class="page">
+  <div class="breadcrumb no-print">
+    <a th:href="@{/auftraege}">Aufträge</a> ›
+    <a th:href="@{/auftraege/{id}(id=${auftrag.auftragId})}" th:text="'#' + ${auftrag.auftragId}"></a>
+    › Drucken
+  </div>
+
+  <!-- Aktionsleiste -->
+  <div class="btn-actions no-print" style="margin-bottom:20px;border:none;padding:0">
+    <button class="btn btn-primary" onclick="window.print()">🖨 Drucken / Als PDF speichern</button>
+    <a th:href="@{/auftraege/{id}(id=${auftrag.auftragId})}" class="btn btn-secondary">← Zurück</a>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="print-doc">
+
+        <div class="doc-header">
+          <h1>SERVICEAUFTRAG</h1>
+          <p>Glauser Illnau AG · Sanitär &amp; Heizung · 8484 Illnau-Effretikon</p>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <span style="font-size:20px;font-weight:700;color:#1e3a8a" th:text="'#' + ${auftrag.auftragId}"></span>
+          <span th:switch="${auftrag.status.name()}">
+            <span th:case="'ERFASST'"     class="badge badge-blue"   th:text="${auftrag.status}"></span>
+            <span th:case="'DISPONIERT'"  class="badge badge-yellow" th:text="${auftrag.status}"></span>
+            <span th:case="'AUSGEFUEHRT'" class="badge badge-purple" th:text="${auftrag.status}"></span>
+            <span th:case="'FREIGEGEBEN'" class="badge badge-green"  th:text="${auftrag.status}"></span>
+            <span th:case="'VERRECHNET'"  class="badge badge-gray"   th:text="${auftrag.status}"></span>
+          </span>
+        </div>
+
+        <div class="doc-section-title">Auftragsdaten</div>
+        <div class="doc-row">
+          <span class="lbl">Datum / Zeit</span>
+          <span class="val"
+                th:text="${#temporals.format(auftrag.erfassungsdatum,'dd.MM.yyyy')} + ' · ' + ${#temporals.format(auftrag.erfassungszeit,'HH:mm')} + ' Uhr'">
+          </span>
+        </div>
+        <div class="doc-row">
+          <span class="lbl">Terminwunsch</span>
+          <span class="val" th:text="${auftrag.terminwunsch ?: '—'}"></span>
+        </div>
+        <div class="doc-row" th:if="${auftrag.terminGeplant != null}">
+          <span class="lbl">Geplanter Termin</span>
+          <span class="val" th:text="${#temporals.format(auftrag.terminGeplant,'dd.MM.yyyy')}"></span>
+        </div>
+
+        <div class="doc-section-title">Kunde / Kontaktperson</div>
+        <div class="doc-row"><span class="lbl">Name</span><span class="val" th:text="${auftrag.kunde.vollname}"></span></div>
+        <div class="doc-row"><span class="lbl">Telefon</span><span class="val" th:text="${auftrag.kunde.telefon}"></span></div>
+        <div class="doc-row" th:if="${auftrag.kunde.natel != null}">
+          <span class="lbl">Natel</span><span class="val" th:text="${auftrag.kunde.natel}"></span>
+        </div>
+        <div class="doc-row"><span class="lbl">Adresse Objekt</span><span class="val" th:text="${auftrag.objektAdresse}"></span></div>
+        <div class="doc-row" th:if="${auftrag.verrechnungAbweichend}">
+          <span class="lbl">Adresse Verrechnung</span>
+          <span class="val" th:text="${auftrag.verrechnungVorname + ' ' + auftrag.verrechnungNachname + ', ' + auftrag.verrechnungStrasse + ', ' + auftrag.verrechnungPlz + ' ' + auftrag.verrechnungOrt}"></span>
+        </div>
+
+        <div class="doc-section-title">Auszuführende Arbeiten</div>
+        <div class="doc-row">
+          <span class="lbl">Arbeitstyp</span>
+          <span class="val">
+            <span th:each="t,i : ${auftrag.arbeitstypen}">
+              <span th:text="${t.bezeichnung}"></span><span th:if="${!i.last}">, </span>
+            </span>
+          </span>
+        </div>
+        <div class="doc-row"><span class="lbl">Beschreibung</span><span class="val" th:text="${auftrag.beschreibung}"></span></div>
+
+        <div th:if="${auftrag.mitarbeiter != null}">
+          <div class="doc-section-title">Disposition</div>
+          <div class="doc-row"><span class="lbl">Mitarbeiter</span><span class="val" th:text="${auftrag.mitarbeiter.vollname}"></span></div>
+          <div class="doc-row" th:if="${auftrag.ausfuehrungsdatum != null}">
+            <span class="lbl">Ausführungsdatum</span>
+            <span class="val" th:text="${#temporals.format(auftrag.ausfuehrungsdatum,'dd.MM.yyyy')}"></span>
+          </div>
+        </div>
+
+        <div th:if="${!#lists.isEmpty(rapporte)}">
+          <div class="doc-section-title">Rapport</div>
+          <div th:each="r : ${rapporte}">
+            <div class="doc-row"><span class="lbl">Arbeitsstunden</span><span class="val" th:text="${r.stunden} + ' h'"></span></div>
+            <div class="doc-row"><span class="lbl">Arbeitsbeschreibung</span><span class="val" th:text="${r.arbeitsbeschreibung}"></span></div>
+            <div class="doc-row" th:if="${r.material}"><span class="lbl">Material</span><span class="val" th:text="${r.material}"></span></div>
+            <div class="doc-row" th:if="${r.freigegebenVon != null}">
+              <span class="lbl">Freigegeben von</span>
+              <span class="val" th:text="${r.freigegebenVon.vollname} + ', ' + ${#temporals.format(r.freigabeDatum,'dd.MM.yyyy')}"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sig-row">
+          <div class="sig-box">Datum / Unterschrift Kunde</div>
+          <div class="sig-box">Datum / Unterschrift Mitarbeiter</div>
+          <div class="sig-box">Datum / Unterschrift Bereichsleiter</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

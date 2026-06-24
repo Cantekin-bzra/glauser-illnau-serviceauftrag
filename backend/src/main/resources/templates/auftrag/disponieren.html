@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Disponieren')}"></head>
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('liste')}"></nav>
+
+<div class="page">
+  <div class="breadcrumb">
+    <a th:href="@{/auftraege}">Aufträge</a> ›
+    <a th:href="@{/auftraege/{id}(id=${auftrag.auftragId})}" th:text="'#' + ${auftrag.auftragId}"></a>
+    › Disponieren
+  </div>
+
+  <div class="page-head">
+    <div><h1>Auftrag disponieren</h1><p>Bereichsleiter – Mitarbeiter zuweisen und Termin festlegen</p></div>
+    <span class="badge badge-blue" style="font-size:13px;padding:6px 14px">ERFASST</span>
+  </div>
+
+  <div class="alert alert-info">
+    ℹ Nach der Disposition wechselt der Auftrag zu <strong>DISPONIERT</strong>.
+  </div>
+
+  <!-- Auftragsdetails (read-only) -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-header"><h2>Auftragsdetails</h2><p>Schreibgeschützt</p></div>
+    <div class="card-body">
+      <div class="info-box" style="margin:0">
+        <div class="info-grid">
+          <div class="info-item"><div class="lbl">Kunde</div><div class="val" th:text="${auftrag.kunde.vollname}"></div></div>
+          <div class="info-item"><div class="lbl">Telefon</div><div class="val" th:text="${auftrag.kunde.telefon}"></div></div>
+          <div class="info-item"><div class="lbl">Objektadresse</div><div class="val" th:text="${auftrag.objektAdresse}"></div></div>
+          <div class="info-item"><div class="lbl">Terminwunsch</div><div class="val" th:text="${auftrag.terminwunsch ?: '—'}"></div></div>
+          <div class="info-item" style="grid-column:1/-1"><div class="lbl">Beschreibung</div><div class="val" th:text="${auftrag.beschreibung}"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dispositionsformular -->
+  <div class="card">
+    <div class="card-header"><h2>Disposition</h2></div>
+    <div class="card-body">
+      <form th:action="@{/auftraege/{id}/disponieren(id=${auftrag.auftragId})}"
+            th:object="${dispositionDTO}" method="post" data-validate>
+        <div class="form-section">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Mitarbeiter zuweisen <span class="req">*</span></label>
+              <select th:field="*{mitarbeiterId}" class="form-control"
+                      th:classappend="${#fields.hasErrors('mitarbeiterId')} ? ' is-invalid'" required>
+                <option value="">— Mitarbeiter auswählen —</option>
+                <option th:each="ma : ${mitarbeiter}"
+                        th:value="${ma.benutzerId}"
+                        th:text="${ma.vollname}">
+                </option>
+              </select>
+              <span th:if="${#fields.hasErrors('mitarbeiterId')}" th:errors="*{mitarbeiterId}" class="field-error"></span>
+              <div class="form-hint">Nur aktive Mitarbeiter werden angezeigt.</div>
+            </div>
+            <div class="form-group" style="flex:0 0 200px">
+              <label>Geplanter Termin <span class="req">*</span></label>
+              <input type="date" th:field="*{terminGeplant}" class="form-control"
+                     th:classappend="${#fields.hasErrors('terminGeplant')} ? ' is-invalid'" required>
+              <span th:if="${#fields.hasErrors('terminGeplant')}" th:errors="*{terminGeplant}" class="field-error"></span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Interne Bemerkung</label>
+              <textarea th:field="*{bemerkung}" class="form-control" placeholder="Hinweise für den Mitarbeiter (optional) …"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="btn-actions">
+          <button type="submit" class="btn btn-primary">Disponieren &amp; Speichern</button>
+          <a th:href="@{/auftraege}" class="btn btn-secondary">Abbrechen</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script th:src="@{/js/validierung.js}"></script>
+</body>
+</html>

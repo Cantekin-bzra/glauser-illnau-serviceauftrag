@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Rapport erfassen')}"></head>
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('liste')}"></nav>
+
+<div class="page">
+  <div class="breadcrumb">
+    <a th:href="@{/auftraege}">Aufträge</a> ›
+    <a th:href="@{/auftraege/{id}(id=${auftrag.auftragId})}" th:text="'#' + ${auftrag.auftragId}"></a>
+    › Rapport
+  </div>
+
+  <div class="page-head">
+    <div><h1>Rapport erfassen</h1><p>Mitarbeiter – Ausgeführte Arbeiten dokumentieren</p></div>
+    <span class="badge badge-yellow" style="font-size:13px;padding:6px 14px">DISPONIERT</span>
+  </div>
+
+  <div class="alert alert-info">
+    ℹ Nach dem Speichern wechselt der Auftrag zu <strong>AUSGEFÜHRT</strong>. Der Bereichsleiter muss danach freigeben.
+  </div>
+
+  <!-- Auftragsdetails -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-header"><h2>Auftragsdetails</h2><p>Schreibgeschützt</p></div>
+    <div class="card-body">
+      <div class="info-box" style="margin:0">
+        <div class="info-grid">
+          <div class="info-item"><div class="lbl">Kunde</div><div class="val" th:text="${auftrag.kunde.vollname}"></div></div>
+          <div class="info-item"><div class="lbl">Geplanter Termin</div><div class="val" th:text="${auftrag.terminGeplant != null ? #temporals.format(auftrag.terminGeplant,'dd.MM.yyyy') : '—'}"></div></div>
+          <div class="info-item"><div class="lbl">Objektadresse</div><div class="val" th:text="${auftrag.objektAdresse}"></div></div>
+          <div class="info-item"><div class="lbl">Arbeitstyp</div>
+            <div class="val">
+              <span th:each="t,i : ${auftrag.arbeitstypen}">
+                <span th:text="${t.bezeichnung}"></span><span th:if="${!i.last}">, </span>
+              </span>
+            </div>
+          </div>
+          <div class="info-item" style="grid-column:1/-1"><div class="lbl">Beschreibung</div><div class="val" th:text="${auftrag.beschreibung}"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rapport-Formular -->
+  <div class="card">
+    <div class="card-header"><h2>Rapport</h2></div>
+    <div class="card-body">
+      <form th:action="@{/auftraege/{id}/rapport(id=${auftrag.auftragId})}"
+            th:object="${rapportDTO}" method="post" data-validate>
+        <div class="form-row">
+          <div class="form-group" style="flex:0 0 180px">
+            <label>Ausführungsdatum <span class="req">*</span></label>
+            <input type="date" th:field="*{datum}" class="form-control"
+                   th:classappend="${#fields.hasErrors('datum')} ? ' is-invalid'" required>
+            <span th:if="${#fields.hasErrors('datum')}" th:errors="*{datum}" class="field-error"></span>
+          </div>
+          <div class="form-group" style="flex:0 0 160px">
+            <label>Arbeitsstunden <span class="req">*</span></label>
+            <input type="number" th:field="*{stunden}" class="form-control"
+                   th:classappend="${#fields.hasErrors('stunden')} ? ' is-invalid'"
+                   placeholder="z.B. 2.5" step="0.5" min="0.5" data-min="0.5" required>
+            <span th:if="${#fields.hasErrors('stunden')}" th:errors="*{stunden}" class="field-error"></span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Arbeitsbeschreibung <span class="req">*</span></label>
+            <textarea th:field="*{arbeitsbeschreibung}" class="form-control"
+                      th:classappend="${#fields.hasErrors('arbeitsbeschreibung')} ? ' is-invalid'"
+                      placeholder="Was wurde ausgeführt? Welche Probleme behoben?" required></textarea>
+            <span th:if="${#fields.hasErrors('arbeitsbeschreibung')}" th:errors="*{arbeitsbeschreibung}" class="field-error"></span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Verwendetes Material</label>
+            <textarea th:field="*{material}" class="form-control"
+                      placeholder="Materialien, Ersatzteile mit Artikelnummern …"></textarea>
+          </div>
+        </div>
+        <div class="btn-actions">
+          <button type="submit" class="btn btn-primary">Rapport speichern &amp; als ausgeführt markieren</button>
+          <a th:href="@{/auftraege/{id}(id=${auftrag.auftragId})}" class="btn btn-secondary">Abbrechen</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script th:src="@{/js/validierung.js}"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Auftrag erfassen')}"></head>
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('erfassen')}"></nav>
+
+<div class="page">
+  <div class="breadcrumb"><a th:href="@{/auftraege}">Aufträge</a> › Neuer Auftrag</div>
+  <div class="page-head">
+    <div><h1>Neuen Serviceauftrag erfassen</h1><p>GL / Administration</p></div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <form th:action="@{/auftraege}" th:object="${auftragDTO}" method="post" data-validate>
+
+        <!-- Auftragsdaten -->
+        <div class="form-section">
+          <div class="form-section-title">Auftragsdaten</div>
+          <div class="form-row">
+            <div class="form-group" style="flex:2">
+              <label>Titel <span class="req">*</span></label>
+              <input type="text" th:field="*{titel}" class="form-control"
+                     th:classappend="${#fields.hasErrors('titel')} ? ' is-invalid'"
+                     placeholder="Kurzbeschreibung des Auftrags" required>
+              <span th:if="${#fields.hasErrors('titel')}" th:errors="*{titel}" class="field-error"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kunde -->
+        <div class="form-section">
+          <div class="form-section-title">Kunde / Kontaktperson</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Kunde auswählen <span class="req">*</span></label>
+              <select th:field="*{kundenId}" class="form-control"
+                      th:classappend="${#fields.hasErrors('kundenId')} ? ' is-invalid'" required>
+                <option value="">— Bitte wählen —</option>
+                <option th:each="k : ${kunden}"
+                        th:value="${k.kundenId}"
+                        th:text="${k.vollname} + ' – ' + ${k.ort}">
+                </option>
+              </select>
+              <span th:if="${#fields.hasErrors('kundenId')}" th:errors="*{kundenId}" class="field-error"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Objektadresse -->
+        <div class="form-section">
+          <div class="form-section-title">Adresse Objekt</div>
+          <div class="toggle-row">
+            <input type="checkbox" id="objektGleichKunde" th:field="*{objektGleichKunde}">
+            <label for="objektGleichKunde" style="cursor:pointer">Gleich wie Kundenadresse</label>
+          </div>
+          <div id="objekt-fields" class="form-row">
+            <div class="form-group" style="flex:3">
+              <label>Strasse</label>
+              <input type="text" th:field="*{objektStrasse}" class="form-control" placeholder="Strasse und Hausnummer">
+            </div>
+            <div class="form-group" style="flex:0 0 90px">
+              <label>PLZ</label>
+              <input type="text" th:field="*{objektPlz}" class="form-control" placeholder="8484">
+            </div>
+            <div class="form-group">
+              <label>Ort</label>
+              <input type="text" th:field="*{objektOrt}" class="form-control" placeholder="Weisslingen">
+            </div>
+          </div>
+        </div>
+
+        <!-- Verrechnungsadresse -->
+        <div class="form-section">
+          <div class="form-section-title">Adresse Verrechnung</div>
+          <div class="toggle-row">
+            <input type="checkbox" id="verrechnungAbweichend" th:field="*{verrechnungAbweichend}">
+            <label for="verrechnungAbweichend" style="cursor:pointer">Abweichend von Kundenadresse</label>
+          </div>
+          <div id="verrechnung-fields">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Vorname</label>
+                <input type="text" th:field="*{verrechnungVorname}" class="form-control" placeholder="Vorname">
+              </div>
+              <div class="form-group">
+                <label>Nachname</label>
+                <input type="text" th:field="*{verrechnungNachname}" class="form-control" placeholder="Nachname">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group" style="flex:3">
+                <label>Strasse</label>
+                <input type="text" th:field="*{verrechnungStrasse}" class="form-control" placeholder="Strasse">
+              </div>
+              <div class="form-group" style="flex:0 0 90px">
+                <label>PLZ</label>
+                <input type="text" th:field="*{verrechnungPlz}" class="form-control" placeholder="8484">
+              </div>
+              <div class="form-group">
+                <label>Ort</label>
+                <input type="text" th:field="*{verrechnungOrt}" class="form-control" placeholder="Weisslingen">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arbeiten -->
+        <div class="form-section">
+          <div class="form-section-title">Auszuführende Arbeiten</div>
+          <div class="check-group" style="margin-bottom:16px">
+            <label th:each="t : ${arbeitstypen}" class="check-item">
+              <input type="checkbox" th:value="${t.arbeitstypId}" th:field="*{arbeitstypIds}">
+              <span th:text="${t.bezeichnung}"></span>
+            </label>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Beschreibung <span class="req">*</span></label>
+              <textarea th:field="*{beschreibung}" class="form-control"
+                        th:classappend="${#fields.hasErrors('beschreibung')} ? ' is-invalid'"
+                        placeholder="Detaillierte Beschreibung der auszuführenden Arbeiten …" required></textarea>
+              <span th:if="${#fields.hasErrors('beschreibung')}" th:errors="*{beschreibung}" class="field-error"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Terminwunsch -->
+        <div class="form-section">
+          <div class="form-section-title">Terminwunsch</div>
+          <div class="form-row">
+            <div class="form-group" style="flex:2">
+              <label>Terminwunsch des Kunden</label>
+              <input type="text" th:field="*{terminwunsch}" class="form-control"
+                     placeholder="z.B. «so schnell wie möglich» oder konkretes Datum">
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-actions">
+          <button type="submit" class="btn btn-primary">Auftrag speichern</button>
+          <a th:href="@{/auftraege}" class="btn btn-secondary">Abbrechen</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<script th:src="@{/js/adresse.js}"></script>
+<script th:src="@{/js/validierung.js}"></script>
+</body>
+</html>

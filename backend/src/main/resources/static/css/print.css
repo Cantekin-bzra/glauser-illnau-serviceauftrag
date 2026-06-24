@@ -1,0 +1,19 @@
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; font-size: 12px; }
+  .navbar, .breadcrumb, .btn-actions { display: none !important; }
+  .page { margin: 0; padding: 0; max-width: 100%; }
+  .card { box-shadow: none; border: none; }
+  .print-doc { border: none; padding: 0; }
+}
+
+.print-doc { padding: 32px; }
+.doc-header { text-align: center; border-bottom: 3px solid #1e3a8a; padding-bottom: 20px; margin-bottom: 24px; }
+.doc-header h1 { font-size: 30px; letter-spacing: 4px; color: #1e3a8a; }
+.doc-header p { font-size: 12px; color: #64748b; margin-top: 6px; }
+.doc-section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: #64748b; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; margin: 20px 0 10px; }
+.doc-row { display: flex; padding: 7px 0; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
+.doc-row .lbl { min-width: 180px; font-weight: 600; color: #475569; }
+.doc-row .val { color: #1e293b; }
+.sig-row { display: flex; gap: 32px; margin-top: 56px; }
+.sig-box { flex: 1; border-top: 1px solid #334155; padding-top: 6px; font-size: 11px; color: #94a3b8; }

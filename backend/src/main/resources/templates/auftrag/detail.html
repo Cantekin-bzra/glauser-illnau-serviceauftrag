@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Auftragsdetail')}"></head>
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('liste')}"></nav>
+
+<div class="page">
+  <div class="breadcrumb"><a th:href="@{/auftraege}">Aufträge</a> › <span th:text="'#' + ${auftrag.auftragId}"></span></div>
+  <div th:replace="~{fragments/layout :: flash}"></div>
+
+  <div class="page-head">
+    <div>
+      <h1 th:text="'Auftrag #' + ${auftrag.auftragId}"></h1>
+      <p th:text="${auftrag.titel}"></p>
+    </div>
+    <span th:switch="${auftrag.status.name()}">
+      <span th:case="'ERFASST'"     class="badge badge-blue"   style="font-size:13px;padding:6px 14px" th:text="${auftrag.status}"></span>
+      <span th:case="'DISPONIERT'"  class="badge badge-yellow" style="font-size:13px;padding:6px 14px" th:text="${auftrag.status}"></span>
+      <span th:case="'AUSGEFUEHRT'" class="badge badge-purple" style="font-size:13px;padding:6px 14px" th:text="${auftrag.status}"></span>
+      <span th:case="'FREIGEGEBEN'" class="badge badge-green"  style="font-size:13px;padding:6px 14px" th:text="${auftrag.status}"></span>
+      <span th:case="'VERRECHNET'"  class="badge badge-gray"   style="font-size:13px;padding:6px 14px" th:text="${auftrag.status}"></span>
+    </span>
+  </div>
+
+  <!-- Auftragsdaten -->
+  <div class="card">
+    <div class="card-header"><h2>Auftragsdaten</h2></div>
+    <div class="card-body">
+      <div class="info-box" style="margin:0">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="lbl">Erfasst am</div>
+            <div class="val" th:text="${#temporals.format(auftrag.erfassungsdatum,'dd.MM.yyyy')} + ' ' + ${#temporals.format(auftrag.erfassungszeit,'HH:mm')}"></div>
+          </div>
+          <div class="info-item">
+            <div class="lbl">Terminwunsch</div>
+            <div class="val" th:text="${auftrag.terminwunsch ?: '—'}"></div>
+          </div>
+          <div class="info-item">
+            <div class="lbl">Geplanter Termin</div>
+            <div class="val" th:text="${auftrag.terminGeplant != null ? #temporals.format(auftrag.terminGeplant,'dd.MM.yyyy') : '—'}"></div>
+          </div>
+          <div class="info-item">
+            <div class="lbl">Ausführungsdatum</div>
+            <div class="val" th:text="${auftrag.ausfuehrungsdatum != null ? #temporals.format(auftrag.ausfuehrungsdatum,'dd.MM.yyyy') : '—'}"></div>
+          </div>
+          <div class="info-item">
+            <div class="lbl">Kunde</div>
+            <div class="val" th:text="${auftrag.kunde.vollname}"></div>
+          </div>
+          <div class="info-item">
+            <div class="lbl">Telefon</div>
+            <div class="val" th:text="${auftrag.kunde.telefon}"></div>
+          </div>
+          <div class="info-item">
+            <div class="lbl">Objektadresse</div>
+            <div class="val" th:text="${auftrag.objektAdresse}"></div>
+          </div>
+          <div class="info-item">
+            <div class="lbl">Mitarbeiter</div>
+            <div class="val" th:text="${auftrag.mitarbeiter != null ? auftrag.mitarbeiter.vollname : '—'}"></div>
+          </div>
+          <div class="info-item">
+            <div class="lbl">Bereichsleiter</div>
+            <div class="val" th:text="${auftrag.bereichsleiter != null ? auftrag.bereichsleiter.vollname : '—'}"></div>
+          </div>
+          <div class="info-item">
+            <div class="lbl">Arbeitstyp</div>
+            <div class="val">
+              <span th:each="t,i : ${auftrag.arbeitstypen}">
+                <span th:text="${t.bezeichnung}"></span><span th:if="${!i.last}">, </span>
+              </span>
+            </div>
+          </div>
+          <div class="info-item" style="grid-column:1/-1">
+            <div class="lbl">Beschreibung</div>
+            <div class="val" th:text="${auftrag.beschreibung}"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aktionen je nach Status -->
+      <div class="btn-actions no-print">
+        <a th:if="${auftrag.status.name() == 'ERFASST'}"
+           th:href="@{/auftraege/{id}/disponieren(id=${auftrag.auftragId})}"
+           class="btn btn-primary">Disponieren</a>
+        <a th:if="${auftrag.status.name() == 'DISPONIERT'}"
+           th:href="@{/auftraege/{id}/rapport(id=${auftrag.auftragId})}"
+           class="btn btn-primary">Rapport erfassen</a>
+        <form th:if="${auftrag.status.name() == 'AUSGEFUEHRT'}"
+              th:action="@{/auftraege/{id}/freigeben(id=${auftrag.auftragId})}" method="post" style="display:inline">
+          <button type="submit" class="btn btn-success">Rapport freigeben</button>
+        </form>
+        <form th:if="${auftrag.status.name() == 'FREIGEGEBEN'}"
+              th:action="@{/auftraege/{id}/verrechnet(id=${auftrag.auftragId})}" method="post" style="display:inline">
+          <button type="submit" class="btn btn-success">Als verrechnet markieren</button>
+        </form>
+        <a th:href="@{/auftraege/{id}/drucken(id=${auftrag.auftragId})}" class="btn btn-secondary">🖨 Drucken</a>
+        <a th:href="@{/auftraege}" class="btn btn-secondary">← Zurück</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rapporte -->
+  <div class="card" th:if="${!#lists.isEmpty(rapporte)}">
+    <div class="card-header"><h2>Rapporte</h2></div>
+    <div class="card-body">
+      <div th:each="r : ${rapporte}" class="info-box">
+        <div class="info-grid">
+          <div class="info-item"><div class="lbl">Datum</div><div class="val" th:text="${#temporals.format(r.datum,'dd.MM.yyyy')}"></div></div>
+          <div class="info-item"><div class="lbl">Stunden</div><div class="val" th:text="${r.stunden} + ' h'"></div></div>
+          <div class="info-item"><div class="lbl">Mitarbeiter</div><div class="val" th:text="${r.mitarbeiter.vollname}"></div></div>
+          <div class="info-item">
+            <div class="lbl">Freigegeben von</div>
+            <div class="val" th:text="${r.freigegebenVon != null ? r.freigegebenVon.vollname : '—'}"></div>
+          </div>
+          <div class="info-item" style="grid-column:1/-1"><div class="lbl">Arbeitsbeschreibung</div><div class="val" th:text="${r.arbeitsbeschreibung}"></div></div>
+          <div class="info-item" th:if="${r.material}"><div class="lbl">Material</div><div class="val" th:text="${r.material}"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
