@@ -116,11 +116,8 @@ INSERT INTO rechnung (auftrag_id, erstellt_von, rechnungsdatum, betrag, position
 VALUES (9, 1, '2024-09-18', 385.00, 'Arbeitszeit 2.5h à CHF 120.00 = CHF 300.00; Filtereinsatz = CHF 45.00; Additiv = CHF 40.00');
 
 -- Auftrag 10: VERRECHNET
-INSERT INTO auftrag (kunden_id, bereichsleiter_id, mitarbeiter_id, titel, beschreibung, status, erfassungsdatum, erfassungszeit, terminwunsch, termin_geplant, ausfuehrungsdatum, freigabe_datum, verrechnet_am, objekt_gleich_kunde)
-VALUES (10, 2, 6, 'Badezimmer Renovation Sanitär', 'Kompletter Sanitärausbau neues Badezimmer: Dusche, WC, Lavabo neu installieren.', 'VERRECHNET', '2024-09-05', '10:00', 'Ab 16.09.', '2024-09-16', '2024-09-19', '2024-09-20', '2024-09-21', FALSE);
-
--- Objekt-Adresse weicht ab (Baustelle)
-UPDATE auftrag SET objekt_gleich_kunde = FALSE, objekt_strasse = 'Bergstrasse 19', objekt_plz = '8307', objekt_ort = 'Effretikon' WHERE auftrag_id = 10;
+INSERT INTO auftrag (kunden_id, bereichsleiter_id, mitarbeiter_id, titel, beschreibung, status, erfassungsdatum, erfassungszeit, terminwunsch, termin_geplant, ausfuehrungsdatum, freigabe_datum, verrechnet_am, objekt_gleich_kunde, objekt_strasse, objekt_plz, objekt_ort)
+VALUES (10, 2, 6, 'Badezimmer Renovation Sanitär', 'Kompletter Sanitärausbau neues Badezimmer: Dusche, WC, Lavabo neu installieren.', 'VERRECHNET', '2024-09-05', '10:00', 'Ab 16.09.', '2024-09-16', '2024-09-19', '2024-09-20', '2024-09-21', FALSE, 'Bergstrasse 19', '8307', 'Effretikon');
 
 INSERT INTO auftrag_arbeitstyp VALUES (10, 2); -- Sanitär
 
